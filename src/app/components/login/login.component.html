@@ -1,0 +1,128 @@
+<div class="my-4 bg-lighColor p-5 rounded-3 shadow-sm border-3 border">
+  <div class="row">
+    <div
+      class="col-md-6 d-flex justify-content-center align-items-center flex-column rounded"
+    >
+      <h1 class="barlow-semi-condensed-semibold">Sign in</h1>
+      <h3 *ngIf="apiError" class="text-danger">{{ apiError }}</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+        <span class="p-float-label">
+          <input
+            formControlName="email"
+            id="email"
+            class="rounded form-control my-2"
+          />
+          <label for="email">Email</label>
+        </span>
+        <div
+          class=""
+          *ngIf="
+            loginForm.get('email')?.errors && loginForm.get('email')?.touched
+          "
+        >
+          <p
+            class="mb-0 text-danger"
+            *ngIf="
+              loginForm.get('email')?.getError('required') &&
+              loginForm.get('email')?.touched
+            "
+          >
+            email is required
+          </p>
+          <p
+            class="mb-0 text-danger"
+            *ngIf="loginForm.get('email')?.getError('email')"
+          >
+            email is invalid
+          </p>
+        </div>
+
+
+
+        <p-password formControlName="password">
+          <ng-template pTemplate="header">
+              <h6>Pick a password</h6>
+          </ng-template>
+          <ng-template pTemplate="footer">
+              <p-divider></p-divider>
+              <p class="mt-2">Suggestions</p>
+              <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                  <li>At least one lowercase</li>
+                  <li>At least one uppercase</li>
+                  <li>At least one numeric</li>
+                  <li>Minimum 8 characters</li>
+              </ul>
+          </ng-template>
+      </p-password>
+
+        <div
+          class=""
+          *ngIf="
+            loginForm.get('password')?.errors &&
+            loginForm.get('password')?.touched
+          "
+        >
+          <p
+            class="mb-0 text-danger"
+            *ngIf="
+              loginForm.get('password')?.getError('required') &&
+              loginForm.get('password')?.touched
+            "
+          >
+            password is required
+          </p>
+          <p
+            class="mb-0 text-danger"
+            *ngIf="loginForm.get('password')?.getError('pattern')"
+          >
+            password pattern is invalid
+          </p>
+        </div>
+
+        <button
+          [disabled]="loginForm.invalid"
+          class="btn btn-secondary-emphasis d-block m-auto"
+        >
+          <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+          <span *ngIf="!isLoading">login</span>
+        </button>
+      </form>
+      <a routerLink="/register">don't have an account ?</a>
+      <a (click)="showDialog()">forgot password ?</a>
+    </div>
+    <div class="col-md-6">
+      <img
+        src="assets/logIn.PNG"
+        class="border border-1 border-dark w-100 rounded"
+        alt=""
+      />
+    </div>
+  </div>
+</div>
+
+<p-dialog header="Header" [(visible)]="visible" [style]="{ width: '50vw' }">
+  <ng-template pTemplate="header">
+    <h3>Please enter your email</h3>
+  </ng-template>
+
+  <div class="card flex justify-content-center p-4 align-items-center">
+    <span class="p-float-label">
+      <input
+        pInputText-sm
+        id="email"
+        [(ngModel)]="email"
+        class="rounded form-control"
+      />
+      <label for="email">Email</label>
+    </span>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="visible = false"
+      label="submit"
+      pAutoFocus
+      [autofocus]="true"
+    ></p-button>
+  </ng-template>
+</p-dialog>

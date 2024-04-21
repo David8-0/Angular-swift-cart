@@ -1,4 +1,5 @@
-body{
-    background-color: red;
 
+.min-height{
+    padding: 60px;
+    min-height: calc(100vh - 90px);
 }

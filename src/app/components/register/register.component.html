@@ -1,0 +1,67 @@
+
+<div class="my-4 bg-lighColor p-5 rounded-3 shadow-sm border-3 border">
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-center  flex-column  rounded ">
+      <h1 class="text-center barlow-semi-condensed-semibold">Sign Up</h1>
+      <p *ngIf="apiError" class="text-danger">{{apiError}}</p>
+
+      <form [formGroup]="registerForm" (ngSubmit)="submit(registerForm)">
+          
+        <label for="name">Name</label>
+        <input type="text" id="name" class="form-control my-2" formControlName="name"/>
+        <div class="" *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
+            <p class="mb-0 text-danger" *ngIf="registerForm.get('name')?.getError('required') && registerForm.get('name')?.touched">name is required</p>
+            <p class="mb-0 text-danger" *ngIf="registerForm.get('name')?.getError('minlength')" > name min length is 4</p>
+            <p class="mb-0 text-danger" *ngIf="registerForm.get('name')?.getError('maxlength')">name max length is 15</p>
+        </div>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control my-2" formControlName="email"/>
+        <div class="" *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
+          <p class="mb-0 text-danger" *ngIf="registerForm.get('email')?.getError('required') && registerForm.get('email')?.touched">email is required</p>
+          <p class="mb-0 text-danger" *ngIf="registerForm.get('email')?.getError('email')" > email is invalid</p>
+      </div>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control my-2" formControlName="password"/>
+        <div class="" *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
+          <p class="mb-0 text-danger" *ngIf="registerForm.get('password')?.getError('required') && registerForm.get('password')?.touched">password is required</p>
+          <p class="mb-0 text-danger" *ngIf="registerForm.get('password')?.getError('pattern')" > password pattern is invalid</p>
+      </div>
+    
+        <label for="rePassword">rePassword</label>
+        <input type="password" id="rePassword" class="form-control my-2" formControlName="confirmPassword"/>
+        <div class="" *ngIf="registerForm.get('confirmPassword')?.errors && registerForm.get('confirmPassword')?.touched">
+          <p class="mb-0 text-danger" *ngIf="registerForm.get('confirmPassword')?.getError('required') && registerForm.get('confirmPassword')?.touched">confirmPassword is required</p>
+          <p class="mb-0 text-danger" *ngIf="registerForm.get('confirmPassword')?.getError('pattern')" > repassword pattern is invalid</p>
+        </div>
+
+        <label for="Phone">Phone</label>
+        <input type="tel"id="Phone"class="form-control my-2"formControlName="Phone"/>
+        <div class="" *ngIf="registerForm.get('Phone')?.errors && registerForm.get('Phone')?.touched">
+          <p class="mb-0 text-danger" *ngIf="registerForm.get('Phone')?.getError('required') && registerForm.get('Phone')?.touched">phone is required</p>
+          <p class="mb-0 text-danger" *ngIf="registerForm.get('Phone')?.getError('minlength')" > phone min length is 10 </p>
+          <p class="mb-0 text-danger" *ngIf="registerForm.get('Phone')?.getError('maxlength')" > phone max length is 13 </p>
+        </div>
+
+        <label for="Phone">Role</label>
+        <select class="form-select" aria-label="Default select example" formControlName="role">
+          <option value="seller">Seller</option>
+          <option value="user">User</option>
+        </select>
+        <div class="" *ngIf="registerForm.get('role')?.errors && registerForm.get('role')?.touched">
+          <p class="mb-0 text-danger" *ngIf="registerForm.get('role')?.getError('required') && registerForm.get('role')?.touched">Role is required</p>
+        </div>
+
+        <button [disabled]="registerForm.invalid" class="btn btn-outline-success mt-3">
+          <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+          <span *ngIf="!isLoading">Submit</span>
+        </button>
+    
+      </form>
+    </div>
+    <div class="col-md-6">
+      <img src="assets/signup.svg" class=" w-100 rounded" alt="">
+    </div>
+  </div>
+</div>
