@@ -26,6 +26,10 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { CardModule } from 'primeng/card';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,11 @@ import { DividerModule } from 'primeng/divider';
     AvatarModule,
     AvatarGroupModule,
     PasswordModule,
-    DividerModule
+    DividerModule,
+    ToastModule,
+    MessagesModule,
+    CardModule,
+    PaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 
-<div class="my-4 bg-lighColor p-5 rounded-3 shadow-sm border-3 border">
+<div class="my-4  p-5 rounded-3 shadow-sm border-3 border">
   <div class="row">
     <div class="col-md-6 d-flex justify-content-center  flex-column  rounded ">
       <h1 class="text-center barlow-semi-condensed-semibold">Sign Up</h1>
@@ -29,7 +29,7 @@
           <p class="mb-0 text-danger" *ngIf="registerForm.get('password')?.getError('pattern')" > password pattern is invalid</p>
       </div>
     
-        <label for="rePassword">rePassword</label>
+        <label for="rePassword">Confirm Password</label>
         <input type="password" id="rePassword" class="form-control my-2" formControlName="confirmPassword"/>
         <div class="" *ngIf="registerForm.get('confirmPassword')?.errors && registerForm.get('confirmPassword')?.touched">
           <p class="mb-0 text-danger" *ngIf="registerForm.get('confirmPassword')?.getError('required') && registerForm.get('confirmPassword')?.touched">confirmPassword is required</p>
@@ -52,12 +52,16 @@
         <div class="" *ngIf="registerForm.get('role')?.errors && registerForm.get('role')?.touched">
           <p class="mb-0 text-danger" *ngIf="registerForm.get('role')?.getError('required') && registerForm.get('role')?.touched">Role is required</p>
         </div>
+        <div class="d-flex align-items-center">
+          <button [disabled]="registerForm.invalid" class="btn btn-secondary btn-lg mt-3">
+            <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+            <span *ngIf="!isLoading">Submit</span>
+          </button>
+      
+          <a routerLink="/login" class="ms-4 mt-3 text-secondary">already have an account ?</a>
+        </div>
 
-        <button [disabled]="registerForm.invalid" class="btn btn-outline-success mt-3">
-          <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
-          <span *ngIf="!isLoading">Submit</span>
-        </button>
-    
+  
       </form>
     </div>
     <div class="col-md-6">
@@ -65,3 +69,4 @@
     </div>
   </div>
 </div>
+

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +13,18 @@ export class LoginComponent {
     isLoading:boolean = false;
     apiError:string = "";
     visible:boolean = false;
-    email: string | undefined;
+    email: string ="";
+    message:any;
     constructor(
       private _authService:AuthenticationService,
-    private _router: Router
-    ){}
+      private _router: Router   
+     ){
+      
+     }
 
     loginForm:FormGroup = new FormGroup({
       email:new FormControl('',[Validators.required,Validators.email]),
-      password:new FormControl('',[Validators.required,Validators.pattern(/^[A-Z][a-z0-9]{3,8}/)]),
+      password:new FormControl('',[Validators.required,Validators.pattern(/[a-z0-9]{3,12}/)]),
     });
 
     login(form:FormGroup){
@@ -37,7 +41,7 @@ export class LoginComponent {
           },
           error:(err)=>{
             console.log(err);
-            this.apiError=err.error.msg;
+            this.apiError=err.error.message;
             this.isLoading = false;
           },
           complete:()=>console.log("Done")
@@ -46,7 +50,16 @@ export class LoginComponent {
     }
 
     forgotPassword(){
-
+      this.visible = false;
+      this._authService.forgotPassword(this.email).subscribe({
+        next:(data)=>{
+          this.message=[{ severity: 'success', summary: 'Success', detail: `${data.message}` }];
+        },
+        error:(err)=>{
+          this.message=[{ severity: 'error', summary: 'Error', detail: `${err.error.message}` }];
+        },
+        complete:()=>console.log("Done")
+      });
     }
 
     showDialog(){

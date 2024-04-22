@@ -1,4 +1,4 @@
-<div class="my-4 bg-lighColor p-5 rounded-3 shadow-sm border-3 border">
+<div class="my-4   p-5 rounded-3 shadow-sm border-3 border">
   <div class="row">
     <div
       class="col-md-6 d-flex justify-content-center align-items-center flex-column rounded"
@@ -6,14 +6,19 @@
       <h1 class="barlow-semi-condensed-semibold">Sign in</h1>
       <h3 *ngIf="apiError" class="text-danger">{{ apiError }}</h3>
       <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
-        <span class="p-float-label">
-          <input
-            formControlName="email"
-            id="email"
-            class="rounded form-control my-2"
-          />
+        <div class="flex justify-content-center mb-3">
           <label for="email">Email</label>
-        </span>
+          <span>
+            <input
+              pInputText
+              id="email"
+              class="w-100"
+              formControlName="email"
+              id="email"
+            />
+          </span>
+        </div>
+
         <div
           class=""
           *ngIf="
@@ -37,23 +42,17 @@
           </p>
         </div>
 
-
-
-        <p-password formControlName="password">
-          <ng-template pTemplate="header">
-              <h6>Pick a password</h6>
-          </ng-template>
-          <ng-template pTemplate="footer">
-              <p-divider></p-divider>
-              <p class="mt-2">Suggestions</p>
-              <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-                  <li>At least one lowercase</li>
-                  <li>At least one uppercase</li>
-                  <li>At least one numeric</li>
-                  <li>Minimum 8 characters</li>
-              </ul>
-          </ng-template>
-      </p-password>
+        <div class="flex justify-content-center">
+          <label for="username">Password</label>
+          <span>
+            <input
+              pInputText
+              id="username"
+              formControlName="password"
+              class="w-100"
+            />
+          </span>
+        </div>
 
         <div
           class=""
@@ -81,14 +80,19 @@
 
         <button
           [disabled]="loginForm.invalid"
-          class="btn btn-secondary-emphasis d-block m-auto"
+          class="btn btn-secondary btn-lg d-block m-auto mt-3"
         >
           <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
           <span *ngIf="!isLoading">login</span>
         </button>
       </form>
-      <a routerLink="/register">don't have an account ?</a>
-      <a (click)="showDialog()">forgot password ?</a>
+
+      <a routerLink="/register" class="text-secondary"
+        >don't have an account ?</a
+      >
+      <a (click)="showDialog()" class="text-secondary cursor-pointer"
+        >forgot password ?</a
+      >
     </div>
     <div class="col-md-6">
       <img
@@ -105,24 +109,32 @@
     <h3>Please enter your email</h3>
   </ng-template>
 
-  <div class="card flex justify-content-center p-4 align-items-center">
-    <span class="p-float-label">
+  <div class="flex justify-content-center p-4 align-items-center">
+    <label for="email">Email</label>
+    <span>
       <input
         pInputText-sm
         id="email"
         [(ngModel)]="email"
         class="rounded form-control"
       />
-      <label for="email">Email</label>
     </span>
   </div>
   <ng-template pTemplate="footer">
-    <p-button
-      icon="pi pi-check"
-      (click)="visible = false"
-      label="submit"
-      pAutoFocus
+    <button
+      (click)="forgotPassword()"
       [autofocus]="true"
-    ></p-button>
+      class="btn btn-secondary btn-lg d-block m-auto mt-3"
+    >
+      submit
+    </button>
   </ng-template>
 </p-dialog>
+
+
+  <p-messages
+    [(value)]="message"
+    [enableService]="false"
+    [closable]="true"
+  ></p-messages>
+

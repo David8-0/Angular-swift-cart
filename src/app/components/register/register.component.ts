@@ -36,6 +36,7 @@ export class RegisterComponent {
           console.log(data)
           this.isLoading = false;
           this._router.navigate(['/home']);
+          this._authService.getuserData();
         },
         error:(err)=>{
           console.log(err);

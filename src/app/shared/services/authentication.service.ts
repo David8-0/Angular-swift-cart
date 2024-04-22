@@ -20,6 +20,8 @@ import { jwtDecode } from 'jwt-decode';
     const encoded = JSON.stringify(localStorage.getItem('token'));
     const decodedData=jwtDecode(encoded);
     this.userData.next(decodedData);
+    console.log(decodedData);
+    
     }
 
     registerUser(user:User):Observable<any>{
