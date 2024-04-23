@@ -31,6 +31,7 @@ import { MessagesModule } from 'primeng/messages';
 import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
 import { myHttpInterceptor } from './shared/interceptors/my-http.interceptor';
+import { ProductItemComponent } from './components/product-item/product-item.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { myHttpInterceptor } from './shared/interceptors/my-http.interceptor';
     RegisterComponent,
     FooterComponent,
     CategoriesComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,

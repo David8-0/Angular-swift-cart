@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 import { Product } from '../../shared/interfaces/product';
 import { ProductService } from '../../shared/services/product.service';
+import { CartServiceService } from '../../shared/services/cart-service.service';
+import { FavoritesServiceService } from '../../shared/services/favorites-service.service';
 
 interface PageEvent  {
   first: number;
@@ -16,14 +18,13 @@ interface PageEvent  {
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit{
-  defaultSrc:string='';
   data:Product[] = [];
-  first: number = 0;
 
-  rows: number = 10;
   constructor(
     private _authService : AuthenticationService,
-    private _productService: ProductService
+    private _productService: ProductService,
+    private _cartService: CartServiceService,
+    private _favoritesService: FavoritesServiceService
   ){}
 
   ngOnInit(): void {
@@ -39,20 +40,56 @@ export class ProductsComponent implements OnInit{
     });
   }
 
-  addToCart(id:string){
-    
-  }
-
-  deleteProduct(id:string){
-    this._productService.deleteProductById(id).subscribe({
-      next:(data)=>{console.log(data);},
+  deleteProduct(productId:string){
+    this._productService.deleteProductById(productId).subscribe({
+      next:(data)=>{this.data=data.data},
       error:(err)=>console.log(err),
     })
   }
 
-  onPageChange(event: PageEvent ) {
-      this.first = event.first;
-      this.rows = event.rows;
+  addToCart(productId:string){
+    this._cartService.addProduct(productId).subscribe({
+      next:(res)=>{console.log(res)},
+      error:(err)=>console.log(err),
+      complete:()=>console.log("Done") 
+    });
+  }
+
+  addToFavorites(productId:string){
+    this._favoritesService.add(productId).subscribe({
+      next:(res)=>{console.log(res)},
+      error:(err)=>console.log(err),
+      complete:()=>console.log("Done") 
+    });
+  }
+
+  removeFromFavorites(productId:string){
+    this._favoritesService.remove(productId).subscribe({
+      next:(res)=>{console.log(res)},
+      error:(err)=>console.log(err),
+      complete:()=>console.log("Done") 
+    });
+  }
+
+  recData(data:string){
+    let arr = data.split(',');
+    switch(arr[0]){
+      case "delete":
+        this.deleteProduct(arr[1]);
+        break;
+      case "addToCart":
+        this.addToCart(arr[1]);
+        break;
+      case "addToFavorites":
+        this.addToFavorites(arr[1]);
+        break;
+      case "removeFromFavorites":
+        this.removeFromFavorites(arr[1])
+        break;
+      default:
+          break;
+    }
+    
   }
 
 }

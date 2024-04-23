@@ -1,37 +1,8 @@
 <div class="row mt-3 g-3">
   <div class="col-md-4" *ngFor="let product of data">
-    <div class="card hover-shadow-scale p-2">
-        <h4 class="text-center mb-0">{{product.name}}</h4>
-        <span class="text-info">{{product.description}}</span>
-        <div class="img-container overflow-hidden">
-          <img
-          alt="Card"
-          [src]="product.imgCover"
-          class="w-100 pb-2 hover"
-        />
-        </div>
-
-
-        <div class="data-container d-flex justify-content-between">
-          <span class="text-success">
-            price:{{product.price}}
-          </span>
-          <span class="text-danger">
-            rating: {{product.rating}}
-          </span>
-        </div>
-
-        <div class="buttons-container d-flex justify-content-between">
-          <button class="btn btn-success" (click)="addToCart(product._id)">add to Cart</button>
-          <button class="btn btn-danger" (click)="deleteProduct(product._id)">Delete</button>
-        </div>
-
-    </div>
+   <app-product-item [holder]="product" (emitter)="recData($event)"></app-product-item>
   </div>
 </div>
 
 
 
-<!-- <div class="card flex justify-content-center">
-  <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-</div> -->

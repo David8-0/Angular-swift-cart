@@ -1,0 +1,24 @@
+<div class="card hover-shadow-scale p-2">
+  <h4 class="text-center mb-0">{{ holder.name }}</h4>
+  <span class="text-info">{{ holder.description }}</span>
+  <div class="img-container overflow-hidden">
+    <img alt="Card" [src]="holder.imgCover" class="w-100 pb-2 hover" />
+  </div>
+
+  <div class="data-container d-flex justify-content-between">
+    <span class="text-success"> price:{{ holder.price }} </span>
+    <span class="text-danger"> rating: {{ holder.rating }} </span>
+  </div>
+
+  <div class="buttons-container d-flex justify-content-between">
+    <button class="btn btn-success" (click)="addToCart(holder._id)">
+      add to Cart
+    </button>
+    <button class="btn btn-info" (click)="addToFavorite(holder._id)">
+        add to Favories
+      </button>
+    <button class="btn btn-danger" (click)="delete(holder._id)">
+      Delete
+    </button>
+  </div>
+</div>

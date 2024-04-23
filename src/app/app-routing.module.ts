@@ -19,6 +19,7 @@ const routes: Routes = [
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
   {path:"profile",component:ProfileComponent},
+  { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
 ];
 
 @NgModule({
