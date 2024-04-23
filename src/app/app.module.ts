@@ -32,7 +32,7 @@ import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
 import { myHttpInterceptor } from './shared/interceptors/my-http.interceptor';
 import { ProductItemComponent } from './components/product-item/product-item.component';
-
+import { BadgeModule } from 'primeng/badge';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +69,8 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     ToastModule,
     MessagesModule,
     CardModule,
-    PaginatorModule
+    PaginatorModule,
+    BadgeModule
   ],
   providers: [provideHttpClient(withInterceptors([
     myHttpInterceptor

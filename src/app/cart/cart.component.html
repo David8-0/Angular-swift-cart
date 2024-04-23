@@ -1,1 +1,32 @@
-<p>cart works!</p>
+<div class="my-4 p-5 rounded-3 shadow-sm border-3 border">
+  <h3>Your Shopping Cart</h3>
+  <div class="row">
+    <div class="col-md-9">
+      <div *ngFor="let product of cart.products">
+        <app-cart-item
+          [product]="product"
+          (emitter)="recData($event)"
+        ></app-cart-item>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="p-2 rounded-3 shadow-sm border-3 border my-4">
+        <div class="d-flex justify-content-center">
+          <h6>
+            Total price: 
+          </h6>
+          <span class="text-success text-bold">{{ cart.totalPrice }}</span>
+          </div>
+
+          <div class="d-flex justify-content-center">
+          <h6>
+            Number of items:
+          </h6>
+          <span class="text-info text-bold">{{ cart.products.length||0 }}</span>
+        </div>
+        <button class="btn btn-info w-100 my-2">make purchase</button>
+        <a class="btn btn-secondary w-100 my-2" routerLink="/products">back to shop</a>
+      </div>
+    </div>
+  </div>
+</div>

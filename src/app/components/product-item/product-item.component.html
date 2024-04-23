@@ -14,9 +14,7 @@
     <button class="btn btn-success" (click)="addToCart(holder._id)">
       add to Cart
     </button>
-    <button class="btn btn-info" (click)="addToFavorite(holder._id)">
-        add to Favories
-      </button>
+    <i class="{{heartClass}} fa-heart fs-4 text-danger"[class.fa-solid]="" (click)="addToFavorite(holder._id)"></i>
     <button class="btn btn-danger" (click)="delete(holder._id)">
       Delete
     </button>

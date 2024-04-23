@@ -1,0 +1,9 @@
+.img-container img {
+    width:150px;
+}
+.cart-item{
+    height: 150px;
+}
+.cart-item-container i {
+    cursor: pointer;
+}

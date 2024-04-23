@@ -1,0 +1,36 @@
+
+<div class="cart-item-container my-4 card p-2">
+    <div class="row">
+        <div class="col-md-4">
+          <div class="d-flex">
+            <div class="img-container me-3">
+              <img [src]="product.imgCover" class="" alt="" />
+            </div>
+            <div class="info">
+              <h5>{{product.name}}</h5>
+              <p>{{product.category}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+            <div class="d-flex justify-content-around">
+              <div class="quatity-cotnainer">
+                <div class="increase btn bg-secondary" (click)="addToCart(product._id)">+</div>
+                <div class="increase text-center">{{product.productQuantity}}</div>
+                <div class="increase btn bg-secondary" (click)="removeFromCart(product._id)">-</div>
+              </div>
+              <div class="price-info d-flex justify-content-center align-items-center flex-column">
+                <h6>{{product.price * product.productQuantity}}</h6>
+                <p>price per item {{product.price}}</p>
+              </div>
+    
+            </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <i class="fa-heart {{heartClass}} me-3 fs-2 text-danger" (click)="addToFavorite(product._id)"></i>
+            <button class="btn btn-danger" (click)="deleteFromCart(product._id)">Remove</button>
+          </div>
+        </div>
+    </div>
+</div>

@@ -19,7 +19,8 @@ interface PageEvent  {
 })
 export class ProductsComponent implements OnInit{
   data:Product[] = [];
-
+  tmpData:Product[] = [];
+  favoriteList:Product[] = [];
   constructor(
     private _authService : AuthenticationService,
     private _productService: ProductService,
@@ -27,17 +28,27 @@ export class ProductsComponent implements OnInit{
     private _favoritesService: FavoritesServiceService
   ){}
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this._productService.getProducts(6,1).subscribe({
       next:(data)=>{
-        console.log(data.data.products);
-        this.data = data.data.products;
+        this.tmpData = data.data.products;
+        this._favoritesService.getAll().subscribe({
+          next:(data)=>{
+            this.favoriteList = data.data.favorites;
+            this._productService.filterProducts(this.tmpData,this.favoriteList);
+            this.data=this.tmpData;
+          },
+          error:(err)=>{
+            console.log(err);
+          }
+        });
+
       },
       error:(err)=>{
         console.log(err);
-        
       }
     });
+    
   }
 
   deleteProduct(productId:string){
@@ -49,7 +60,10 @@ export class ProductsComponent implements OnInit{
 
   addToCart(productId:string){
     this._cartService.addProduct(productId).subscribe({
-      next:(res)=>{console.log(res)},
+      next:(res)=>{
+        this._cartService.numOfItems.next(res.data.numberOfItems);
+        this._cartService.cartItems.next(res.data.cart);
+      },
       error:(err)=>console.log(err),
       complete:()=>console.log("Done") 
     });
@@ -57,7 +71,9 @@ export class ProductsComponent implements OnInit{
 
   addToFavorites(productId:string){
     this._favoritesService.add(productId).subscribe({
-      next:(res)=>{console.log(res)},
+      next:(res)=>{
+        this._favoritesService.favoriteItems.next(res.data.favorites);
+      },
       error:(err)=>console.log(err),
       complete:()=>console.log("Done") 
     });
@@ -65,7 +81,9 @@ export class ProductsComponent implements OnInit{
 
   removeFromFavorites(productId:string){
     this._favoritesService.remove(productId).subscribe({
-      next:(res)=>{console.log(res)},
+      next:(res)=>{
+        this._favoritesService.favoriteItems.next(res.data.favorites);
+      },
       error:(err)=>console.log(err),
       complete:()=>console.log("Done") 
     });

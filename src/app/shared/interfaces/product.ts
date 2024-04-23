@@ -1,6 +1,7 @@
 export interface Product {
     _id:string,
     name:string,
+    category:string,
     rating:number,
     price:number,
     priceDiscount:number,
@@ -10,5 +11,7 @@ export interface Product {
     images:string[],
     productSales:number,
     productQuantity:number,
-    creationDate:Date
+    creationDate:Date;
+    isfavorite:boolean,
+    inCart:boolean
 }

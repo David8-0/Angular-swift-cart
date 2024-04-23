@@ -58,4 +58,15 @@ export class ProductService {
       }
     });
   }
+
+  filterProducts(products:Product[],favorites:Product[]){
+    products.forEach(p => {
+      favorites.forEach(f =>{
+        if(f._id === p._id) {
+          p.isfavorite=true
+        }
+      });
+    });
+    
+  }
 }
