@@ -19,8 +19,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import{HttpClientModule} from '@angular/common/http';
-import { RouterModule} from '@angular/router';
+import{HttpClientModule, provideHttpClient, withInterceptors} from '@angular/common/http';
+import { RouterModule, provideRouter} from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
@@ -30,6 +30,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
+import { myHttpInterceptor } from './shared/interceptors/my-http.interceptor';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,9 @@ import { PaginatorModule } from 'primeng/paginator';
     CardModule,
     PaginatorModule
   ],
-  providers: [],
+  providers: [provideHttpClient(withInterceptors([
+    myHttpInterceptor
+  ]))],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

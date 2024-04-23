@@ -27,7 +27,7 @@ export class ProductsComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    this._productService.getProducts(4,3).subscribe({
+    this._productService.getProducts(6,1).subscribe({
       next:(data)=>{
         console.log(data.data.products);
         this.data = data.data.products;
@@ -39,7 +39,16 @@ export class ProductsComponent implements OnInit{
     });
   }
 
+  addToCart(id:string){
+    
+  }
 
+  deleteProduct(id:string){
+    this._productService.deleteProductById(id).subscribe({
+      next:(data)=>{console.log(data);},
+      error:(err)=>console.log(err),
+    })
+  }
 
   onPageChange(event: PageEvent ) {
       this.first = event.first;

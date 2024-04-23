@@ -21,12 +21,17 @@
           </span>
         </div>
 
+        <div class="buttons-container d-flex justify-content-between">
+          <button class="btn btn-success" (click)="addToCart(product._id)">add to Cart</button>
+          <button class="btn btn-danger" (click)="deleteProduct(product._id)">Delete</button>
+        </div>
+
     </div>
   </div>
 </div>
 
 
 
-<div class="card flex justify-content-center">
+<!-- <div class="card flex justify-content-center">
   <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-</div>
+</div> -->

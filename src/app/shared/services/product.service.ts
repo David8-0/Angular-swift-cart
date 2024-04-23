@@ -40,11 +40,7 @@ export class ProductService {
   }
 
   deleteProductById(id:string):Observable<any>{
-    return this._httpClient.delete(`${this.baseUrl}`,{
-      headers:{
-        id
-      }
-    });
+    return this._httpClient.delete(`${this.baseUrl}/${id}`);
   }
 
   getTopSelling():Observable<any>{
