@@ -8,6 +8,7 @@ import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 const routes: Routes = [
   {path:"",redirectTo:"home",pathMatch:"full"},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
   {path:"profile",component:ProfileComponent},
+  {path:"favorites",component:WishlistComponent},
   { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
 ];
 

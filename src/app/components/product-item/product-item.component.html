@@ -11,12 +11,14 @@
   </div>
 
   <div class="buttons-container d-flex justify-content-between">
-    <button class="btn btn-success" (click)="addToCart(holder._id)">
-      add to Cart
-    </button>
+    
     <i class="{{heartClass}} fa-heart fs-4 text-danger"[class.fa-solid]="" (click)="addToFavorite(holder._id)"></i>
-    <button class="btn btn-danger" (click)="delete(holder._id)">
-      Delete
-    </button>
   </div>
+
+  <button class="btn btn-danger w-100 my-2" (click)="delete(holder._id)" *ngIf=" mode=='seller' ">
+    Delete
+  </button>
+  <button class="btn btn-success my-2" (click)="addToCart(holder._id)">
+    add to Cart
+  </button>
 </div>

@@ -1,6 +1,6 @@
 <div class="row mt-3 g-3">
   <div class="col-md-4" *ngFor="let product of data">
-   <app-product-item [favs]="favoriteList" [holder]="product" (emitter)="recData($event)"></app-product-item>
+   <app-product-item  [holder]="product" (emitter)="recData($event)"></app-product-item>
   </div>
 </div>
 

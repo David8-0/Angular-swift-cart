@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/user';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
   baseUrl:string='http://localhost:3000/api/v1/users';
-  constructor(private _httpClient:HttpClient) { }
+  constructor(private _httpClient:HttpClient) { 
+
+  }
 
   getAll():Observable<any>{
     return this._httpClient.get(`${this.baseUrl}`);
@@ -23,7 +26,7 @@ export class UsersService {
   }
 
   getUserById(userId:string):Observable<any>{
-    return this._httpClient.get(`${this.baseUrl}/userId`);
+    return this._httpClient.get(`${this.baseUrl}/${userId}`);
   }
 
 }

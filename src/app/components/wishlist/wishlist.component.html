@@ -1,0 +1,8 @@
+<div class="my-4 p-5 rounded-3 shadow-sm border-3 border row">
+    <h3>My Wishlist </h3> 
+    <span class="text-secondary fs-5 fw-medium">{{data.length}} items</span>
+    <div class="col-md-4" *ngFor="let product of data">
+     <app-product-item [mode]="mode"  [holder]="product" (emitter)="recData($event)"></app-product-item>
+    </div>
+  </div>
+  

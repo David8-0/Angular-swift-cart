@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartServiceService } from '../../shared/services/cart-service.service';
+import { FavoritesServiceService } from '../../shared/services/favorites-service.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,9 +9,12 @@ import { CartServiceService } from '../../shared/services/cart-service.service';
 })
 export class NavBarComponent {
     cartNumber:number = 0;
-    constructor(private _cartService:CartServiceService){
+    favNumber:number = 0;
+    constructor(private _cartService:CartServiceService,private _favService:FavoritesServiceService){
       _cartService.numOfItems.subscribe(
         val=>this.cartNumber = val
     )
+    _favService.favoriteItems.subscribe(val=>this.favNumber = val.length)
+
     }
 }

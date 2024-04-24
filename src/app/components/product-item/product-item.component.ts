@@ -10,7 +10,7 @@ export class ProductItemComponent implements OnInit{
   heartClass:string="fa-regular";
   constructor(){}
   @Input() holder:Product={} as Product;
-  @Input() favs:Product[]=[] as Product[];
+  @Input() mode:string="";   // wishlist seller user 
   @Output() emitter:EventEmitter<any> = new EventEmitter();
   ngOnInit(): void {
     if(this.holder.isfavorite)  this.heartClass="fa-solid";

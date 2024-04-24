@@ -33,6 +33,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { myHttpInterceptor } from './shared/interceptors/my-http.interceptor';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { BadgeModule } from 'primeng/badge';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { BadgeModule } from 'primeng/badge';
     FooterComponent,
     CategoriesComponent,
     ProfileComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,

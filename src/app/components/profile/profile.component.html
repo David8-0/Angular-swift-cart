@@ -1,1 +1,16 @@
-<p>profile works!</p>
+<div class="profile-container  p-5 rounded-3 shadow-sm border-3 border position-relative">
+    <h1 class="">Profile</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <input id="disabled-input" type="text" pInputText [disabled]="true" [(ngModel)]="value" />
+        </div>
+        <div class="col-md-6">
+            <div class="rigth-container  d-flex justify-content-center align-items-center flex-column">
+                <div class="user-img shadow-sm ">
+                    <img src="assets/pizza.jpg" alt="">
+                </div>
+                <h4 class="mt-2">User Name</h4>
+            </div>
+        </div>
+    </div>
+</div>
