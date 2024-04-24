@@ -34,6 +34,8 @@ import { myHttpInterceptor } from './shared/interceptors/my-http.interceptor';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { BadgeModule } from 'primeng/badge';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { MessageService } from 'primeng/api';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +78,7 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
   ],
   providers: [provideHttpClient(withInterceptors([
     myHttpInterceptor
-  ]))],
+  ])),MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

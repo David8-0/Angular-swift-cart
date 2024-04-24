@@ -20,8 +20,8 @@ export class RegisterComponent {
   registerForm:FormGroup = new FormGroup({
     name:new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(15)]),
     email:new FormControl('',[Validators.required,Validators.email]),
-    password:new FormControl('',[Validators.required,Validators.pattern(/^[A-Z][a-z0-9]{3,8}/)]),
-    confirmPassword:new FormControl('',[Validators.required,Validators.pattern(/^[A-Z][a-z0-9]{3,8}/)]),
+    password:new FormControl('',[Validators.required,Validators.pattern(/^[A-Za-z0-9]{3,12}/)]),
+    confirmPassword:new FormControl('',[Validators.required,Validators.pattern(/^[A-Za-z0-9]{3,12}/)]),
     Phone:new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(13)]),
     role:new FormControl('',[Validators.required])
   });
