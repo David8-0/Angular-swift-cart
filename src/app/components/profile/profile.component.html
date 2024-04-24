@@ -2,15 +2,100 @@
     <h1 class="">Profile</h1>
     <div class="row">
         <div class="col-md-6">
-            <input id="disabled-input" type="text" pInputText [disabled]="true" [(ngModel)]="value" />
+
+            <div class="inp-group text-center my-2">
+                <div class="row">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center"><label for="userName" class="me-3 fs-4">Name</label></div>
+                    <div class="col-md-8"><input id="userName" type="text" pInputText value="name"  [disabled]="!editable" class="w-100" /></div>
+                </div>
+  
+            </div>
+            <div class="inp-group text-center my-2">
+                <div class="row">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center"><label for="useremail" class="me-3 fs-4">Email</label></div>
+                    <div class="col-md-8"><input id="useremail" type="text" pInputText [disabled]="!editable" class="w-100" /></div>
+                </div>
+  
+            </div>
+            <div class="inp-group text-center my-2">
+                <div class="row">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center"><label for="userRole" class="me-3 fs-4">Role</label></div>
+                    <div class="col-md-8"><input id="userRole" type="text" pInputText [disabled]="true" class="w-100" /></div>
+                </div>
+  
+            </div>
+            <div class="inp-group text-center my-2">
+                <div class="row">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center"><label for="userPhone" class="me-3 fs-4">Phone</label></div>
+                    <div class="col-md-8"><input id="userPhone" type="text" pInputText [disabled]="!editable" class="w-100" /></div>
+                </div>
+  
+            </div>
+            <div class="inp-group text-center my-2">
+                <div class="row">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center"><label for="userAdress" class="me-3 fs-4">Adress</label></div>
+                    <div class="col-md-8"><input id="userAdress" type="text" pInputText [disabled]="!editable" class="w-100"/></div>
+                </div>
+  
+            </div>
+            <div class="inp-group text-center my-2">
+                <div class="row">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center"><label for="userAge" class="me-3 fs-4">Age</label></div>
+                    <div class="col-md-8"><input id="userAge" type="number" pInputText [disabled]="!editable" class="w-100"/></div>
+                </div>
+            </div>
+            
+
+            <div class="buttons d-flex justify-content-around" *ngIf="editable">
+                <button class="btn btn-secondary" (click)="showDialog()">change password</button>
+                <button class="btn btn-success">Submit</button>
+            </div>
+
         </div>
         <div class="col-md-6">
             <div class="rigth-container  d-flex justify-content-center align-items-center flex-column">
                 <div class="user-img shadow-sm ">
                     <img src="assets/pizza.jpg" alt="">
                 </div>
-                <h4 class="mt-2">User Name</h4>
+                <div class="controls mt-4 w-100 d-flex justify-content-center">
+                    <button class="btn btn-info" (click)="edit()">Edit</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<p-dialog header="Header" [(visible)]="visibleDialog" [style]="{ width: '50vw' }">
+    <ng-template pTemplate="header">
+      <h3>Change Password</h3>
+    </ng-template>
+    <div class="inp-group text-center my-2">
+        <div class="row">
+            <div class="col-md-4 d-flex justify-content-center align-items-center"><label for="userOldPassword" class="me-3 fs-4">Old Password</label></div>
+            <div class="col-md-8"><input id="userOldPassword" type="password" pInputText [disabled]="!editable" class="w-100"/></div>
+        </div>
+    </div>
+    <div class="inp-group text-center my-2">
+    <div class="row">
+        <div class="col-md-4 d-flex justify-content-center align-items-center"><label for="userPassword" class="me-3 fs-4">New Password</label></div>
+        <div class="col-md-8"><input id="userPassword" type="password" pInputText [disabled]="!editable" class="w-100"/></div>
+    </div>
+    </div>
+    <div class="inp-group text-center my-2">
+        <div class="row">
+            <div class="col-md-4 d-flex justify-content-center align-items-center"><label for="userConfrimPassword" class="me-3 fs-4">Confirm Password</label></div>
+            <div class="col-md-8"><input id="userConfrimPassword" type="password" pInputText [disabled]="!editable" class="w-100"/></div>
+        </div>
+    </div>
+
+
+    <ng-template pTemplate="footer">
+      <button
+        
+        [autofocus]="true"
+        class="btn btn-secondary btn-lg d-block m-auto mt-3"
+      >
+        submit
+      </button>
+    </ng-template>
+  </p-dialog>

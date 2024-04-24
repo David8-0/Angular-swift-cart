@@ -9,7 +9,10 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
 })
 export class ProfileComponent implements OnDestroy{
   value: string | undefined;
-    userData:User = {} as User;
+  editable: boolean=false;
+  userData:User = {} as User;
+  visibleDialog:boolean = false;
+
     constructor(private _authService:AuthenticationService){
       _authService.userData.subscribe(userData =>{
         this.userData = userData;
@@ -18,6 +21,13 @@ export class ProfileComponent implements OnDestroy{
     }
 
 
+    edit():void{
+      this.editable=true;
+    }
+
+    showDialog():void{
+      this.visibleDialog=true;
+    }
 
     ngOnDestroy(): void {
         //this._authService.userData.unsubscribe();
