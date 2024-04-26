@@ -22,6 +22,7 @@ const routes: Routes = [
   {path:"profile",component:ProfileComponent},
   {path:"favorites",component:WishlistComponent},
   { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
+  { path: 'updateProduct', loadChildren: () => import('./update-product/update-product.module').then(m => m.UpdateProductModule) },
 ];
 
 @NgModule({

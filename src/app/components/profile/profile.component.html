@@ -137,7 +137,9 @@
         </div>
       </div>
       <!-- ****************************************************** -->
+      
     </form>
+    
 
       <div class="buttons d-flex justify-content-around" *ngIf="editable">
         <button class="btn btn-secondary" (click)="showDialog()">
@@ -151,11 +153,19 @@
       <div
         class="rigth-container d-flex justify-content-center align-items-center flex-column"
       >
-        <div class="user-img shadow-sm">
-          <img src="assets/pizza.jpg" alt="" />
+      <div class="cont position-relative">
+        <div class="user-img shadow-sm bg-info ">
+          <img [src]="userData.img" alt="" />
         </div>
+        <label for="file-upload" class="custom-file-upload">
+          <i class="fa-solid fa-camera"></i>
+        </label>
+      </div>
+       
         <div class="controls mt-4 w-100 d-flex justify-content-center">
-          <button class="btn btn-info" (click)="edit()">Edit</button>
+          <input class="upload-img" id="file-upload" type="file" (change)="onFileSelected($event)">
+          
+          <button  class="btn btn-info" (click)="edit()">Edit</button>
         </div>
       </div>
     </div>

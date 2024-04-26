@@ -34,8 +34,8 @@ import { myHttpInterceptor } from './shared/interceptors/my-http.interceptor';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { BadgeModule } from 'primeng/badge';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
-import { MessageService } from 'primeng/api';
-
+import { MessageService,ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,11 +74,12 @@ import { MessageService } from 'primeng/api';
     MessagesModule,
     CardModule,
     PaginatorModule,
-    BadgeModule
+    BadgeModule,
+    ConfirmDialogModule
   ],
   providers: [provideHttpClient(withInterceptors([
     myHttpInterceptor
-  ])),MessageService],
+  ])),MessageService,ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

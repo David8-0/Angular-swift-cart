@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { jwtDecode } from 'jwt-decode';
 import { UsersService } from './users.service';
+import { ResetPassword } from '../interfaces/reset-password';
 @Injectable({
   providedIn: 'root'
   })
@@ -40,11 +41,10 @@ import { UsersService } from './users.service';
       return this._httpClient.post(`${this.baseUrl}api/v1/users/forgotPassword`,{email})
     }
 
-    resetPassword(user:User,resetToken:string):Observable<any>{
-      return this._httpClient.patch(`${this.baseUrl}api/v1/users/resetPassword`,user,{
-        params:{
-          resetToken
-        }
+    resetPassword(reset:ResetPassword):Observable<any>{
+      return this._httpClient.patch(`${this.baseUrl}api/v1/users/resetPassword/${reset.code}`,{
+        password:reset.password,
+        confirmPassword:reset.confirmPassword
       })  
     }
 

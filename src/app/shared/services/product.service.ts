@@ -31,12 +31,15 @@ export class ProductService {
     });
   }
 
-  updateProductById(id:string):Observable<any>{
-    return this._httpClient.patch(`${this.baseUrl}`,{
-      headers:{
-        id
-      }
+  updateProductById(id:string,product:Product):Observable<any>{
+    return this._httpClient.patch(`${this.baseUrl}/${id}`,{
+      product:product
     });
+  }
+  updateProductImagesById(id:string,images:any):Observable<any>{
+    console.log();
+    
+    return this._httpClient.patch(`${this.baseUrl}/${id}`,images);
   }
 
   deleteProductById(id:string):Observable<any>{

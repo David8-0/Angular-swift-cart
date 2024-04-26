@@ -43,15 +43,9 @@
         </div>
 
         <div class="flex justify-content-center">
-          <label for="username">Password</label>
-          <span>
-            <input
-              pInputText
-              id="username"
-              formControlName="password"
-              class="w-100"
-            />
-          </span>
+          <label for="password">Password</label>
+          <p-password class="w-100 d-block" id="password" formControlName="password" [toggleMask]="true"></p-password>
+
         </div>
 
         <div
@@ -103,7 +97,7 @@
     </div>
   </div>
 </div>
-
+<!--* forgot password -->
 <p-dialog header="Header" [(visible)]="visible" [style]="{ width: '50vw' }">
   <ng-template pTemplate="header">
     <h3>Please enter your email</h3>
@@ -130,8 +124,41 @@
     </button>
   </ng-template>
 </p-dialog>
+<!--* enter token -->
+<p-dialog header="Header" [(visible)]="showResetToken" [style]="{ width: '50vw' }">
+  <ng-template pTemplate="header">
+    <h3>submit code with new password</h3>
+  </ng-template>
+
+  <div class="flex justify-content-center p-4 align-items-center">
+    <form [formGroup]="resetPasswordForm" (ngSubmit)="submitResetPassword(resetPasswordForm)">
+    <label for="code">Code</label>
+    <span>
+      <input
+        pInputText-sm
+        id="code"
+        class="rounded form-control"
+        formControlName="code"
+      />
+    </span>
+    <label>new Password</label>
+    <p-password class="w-100 d-block" formControlName="password" [toggleMask]="true"></p-password>
+    <label>confirm new Password</label>
+    <p-password  formControlName="confirmPassword" class="w-100 d-block" [toggleMask]="true"></p-password>
+    <input
+    type="submit"
+      [autofocus]="true"
+      class="btn btn-secondary btn-lg d-block m-auto mt-3"
+    >
+  </form>
+  </div>
+ 
+    
 
 
+
+
+</p-dialog>
   <p-messages
     [(value)]="message"
     [enableService]="false"

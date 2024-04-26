@@ -3,6 +3,7 @@ import { CartServiceService } from '../shared/services/cart-service.service';
 import { Cart } from '../shared/interfaces/cart';
 import { FavoritesServiceService } from '../shared/services/favorites-service.service';
 import { Product } from '../shared/interfaces/product';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-cart',
@@ -10,10 +11,15 @@ import { Product } from '../shared/interfaces/product';
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit{
+  visibleClearDialog: boolean = false;
   cart:Cart={} as Cart;
   tmpCart:Cart={} as Cart;
   favItems:Product[] = [] as Product[];
-  constructor(private _cartService: CartServiceService, private _favoritesService:FavoritesServiceService){
+  constructor(
+    private _cartService: CartServiceService
+    , private _favoritesService:FavoritesServiceService,
+    private messageService: MessageService
+  ){
     _favoritesService.favoriteItems.subscribe(favs=>{
       this.favItems = favs;
     });
@@ -112,5 +118,30 @@ export class CartComponent implements OnInit{
     
   }
 
+  showDialog() {
+      this.visibleClearDialog = true;
+  }
+
+  yesClearCart(){
+    this._cartService.clearCart().subscribe({
+      next:(res)=>{
+        this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Your cart has been cleared' });
+        this._cartService.numOfItems.next(res.data.numberOfItems);
+        this.cart=res.data.cart;
+      },
+      error:(err)=>{
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'there was a problem clearing your cart' });
+      },
+      complete:()=>{this.visibleClearDialog = false;}
+    });
+  }
+  noClearCart(){
+    this.visibleClearDialog = false;
+  }
+
 
 }
+
+
+
+

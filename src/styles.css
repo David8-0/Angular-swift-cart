@@ -158,3 +158,16 @@ body{
 .hover-shadow-scale:hover img{
   transform: scale(1.2);
 }
+
+.p-button {
+  /* Override Bootstrap button styles */
+  background-color: inherit;
+  border-color: inherit;
+  color: inherit;
+  border: inherit;
+  /* Add any other styles you need */
+}
+
+.bg-offWhite{
+  background-color: #F7F7F7;
+}

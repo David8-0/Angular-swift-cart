@@ -39,7 +39,8 @@ export class ProfileComponent implements OnDestroy{
       phone:new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(13)]),
       role:new FormControl(''),
       Age:new FormControl('',[Validators.min(12)]),
-      address:new FormControl('')
+      address:new FormControl(''),
+      photo:new FormControl(null)
     });
 
     updateUserPasswordForm:FormGroup = new FormGroup({
@@ -93,6 +94,26 @@ export class ProfileComponent implements OnDestroy{
 
     showDialog():void{
       this.visibleDialog=true;
+    }
+    onFileSelected(event:any) {
+   
+      const file: File = event.target.files[0];
+      if (file) {
+        let formData = new FormData();
+        formData.append('photo',file);
+        console.log(formData);
+        
+        this._userService.uploadPhoto(formData).subscribe({
+          next:(res)=>{
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Your Photo updated Successfuly' });
+            this._authService.userData.next(res.data.user);
+          },
+          error:(err)=>{
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'there was an error updating your photo' });
+            console.log(err);
+          }
+        })
+      }
     }
 
     ngOnDestroy(): void {

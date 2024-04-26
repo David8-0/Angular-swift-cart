@@ -9,7 +9,7 @@ export interface User {
     role:["user","seller"],
     Age:number,
     phone:string,
-    img:string,
+    img:any,
     address:string,
     cart:Cart,
     favorites:Product[],

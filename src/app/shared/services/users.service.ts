@@ -29,4 +29,9 @@ export class UsersService {
     return this._httpClient.get(`${this.baseUrl}/${userId}`);
   }
 
+
+
+  uploadPhoto(img:any):Observable<any>{
+    return this._httpClient.patch(`${this.baseUrl}/32`,img);
+  }
 }
