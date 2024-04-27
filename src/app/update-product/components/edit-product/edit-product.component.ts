@@ -1,22 +1,46 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProductService } from '../shared/services/product.service';
+import { ActivatedRoute } from '@angular/router';
+import { Product } from '../../../shared/interfaces/product';
+import { ProductService } from '../../../shared/services/product.service';
 import { MessageService } from 'primeng/api';
+
 @Component({
-  selector: 'app-update-product',
-  templateUrl: './update-product.component.html',
-  styleUrl: './update-product.component.css'
+  selector: 'app-edit-product',
+  templateUrl: './edit-product.component.html',
+  styleUrl: './edit-product.component.css'
 })
-export class UpdateProductComponent {
-  constructor(
-    private _productService: ProductService,
+export class EditProductComponent implements OnInit{
+  ratingvalue: number=3;
+  productId:string ="";
+  isLoading:boolean = false;
+  product:Product = {} as Product;
+  constructor(private _activatedRoute:ActivatedRoute,
+    private _productService:ProductService,
     private messageService: MessageService
   ){}
-  activeStep:number = 0;
-  clickable:boolean = false;
-  isLoading:boolean = false;
-  productId:string="";
+  ngOnInit(): void {
+    this._activatedRoute.paramMap.subscribe(params => {
+      this.productId = params.get('id')??""; 
+    });
 
+    this._productService.getProductById(this.productId).subscribe({
+      next:(res)=>{this.product=res.data.product;
+        this.productForm.get('name')?.setValue(this.product.name);
+        this.productForm.get('price')?.setValue(this.product.price);
+        this.productForm.get('priceDiscount')?.setValue(this.product.priceDiscount);
+        this.productForm.get('description')?.setValue(this.product.description);
+        this.productForm.get('productQuantity')?.setValue(this.product.productQuantity);
+        this.productForm.get('category')?.setValue(this.product.category);
+        this.productForm.get('brand')?.setValue(this.product.brand);
+        this.ratingvalue = this.product.rating;
+      },
+      error:(err)=>{console.log(err)}
+
+    });
+    
+    
+  }
 
   productForm:FormGroup = new FormGroup({
     name:new FormControl('',[Validators.required,Validators.minLength(4)]),
@@ -27,15 +51,15 @@ export class UpdateProductComponent {
     category:new FormControl('',[Validators.required]),
     brand:new FormControl(''),
   });
+
   submitProduct(form:FormGroup){
     if(form.valid){
+      console.log(form);
       this.isLoading = true;
-      this._productService.addProduct(form.value).subscribe({
+      this._productService.updateProductById(this.productId,form.value).subscribe({
         next:(res)=>{
           this.isLoading = false;
           this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Your Product added Please upload images' });
-          this.activeStep=1;
-          this.productId=res.data.product._id
           console.log(res);
         },
         error:(err)=>{
@@ -87,10 +111,4 @@ export class UpdateProductComponent {
         })
       }
   }
-
-  addAnother(){
-    this.activeStep=0;
-  }
-
-
 }

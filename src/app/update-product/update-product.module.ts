@@ -9,9 +9,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MessageService,ConfirmationService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { ImageModule } from 'primeng/image';
+import { RatingModule } from 'primeng/rating';
 @NgModule({
   declarations: [
-    UpdateProductComponent
+    UpdateProductComponent,
+    EditProductComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +26,9 @@ import { ToastModule } from 'primeng/toast';
     FormsModule,
     ReactiveFormsModule,
     InputTextareaModule,
-    ToastModule
+    ToastModule,
+    ImageModule,
+    RatingModule
   ],
   providers:[MessageService,ConfirmationService]
 })

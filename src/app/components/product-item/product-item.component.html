@@ -21,4 +21,7 @@
   <button class="btn btn-success my-2" (click)="addToCart(holder._id)">
     add to Cart
   </button>
+  <a class="btn btn-outline-primary my-2" [routerLink]="['/updateProduct/edit-product',holder._id]" >
+    Edit Product
+  </a>
 </div>

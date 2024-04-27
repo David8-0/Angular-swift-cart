@@ -1,19 +1,38 @@
-<div class="my-4 p-5 rounded-3 shadow-sm border-3 border bg-offWhite w-100">
-  <h1>Add Product</h1>
-  <div class="card p-3">
-    <p-stepper [linear]="true" [activeStep]="activeStep">
-      <p-stepperPanel header="Product Info">
-        <ng-template
-          pTemplate="content"
-          let-nextCallback="nextCallback"
-          let-index="index"
-        >
-          <form
-            [formGroup]="productForm"
-            (ngSubmit)="submitProduct(productForm)"
+<div class="row">
+  <div class="col-md-3">
+    <div class="my-4 p-5 rounded-3 shadow-sm border-3 border bg-offWhite">
+      <h2>Info</h2>
+      <div class="info-wrapper bg-white p-3 rounded-2 border border-2">
+        <h4>Rating</h4>
+        <div class="flex justify-content-center">
+          <p-rating
+            [disabled]="true"
+            [(ngModel)]="ratingvalue"
+            [cancel]="false"
+          ></p-rating>
+        </div>
+        <div class="border-bottom border-bottom-3 my-2"></div>
+        <h4>Number of Sales</h4>
+        <span>{{ product.productSales }}</span>
+        <div class="border-bottom border-bottom-3 my-2"></div>
+        <h4>creation date</h4>
+        <span>{{ product.creationDate }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="my-4 p-5 rounded-3 shadow-sm border-3 border bg-offWhite w-100">
+      <h1>Edit Product</h1>
+      <div class="row g-2">
+        <div class="col-md-8">
+          <div
+            class="form-wrapper bg-white p-3 rounded-2 h-100 border border-2"
           >
-            <div class="row">
-              <div class="col-md-6">
+            <form
+              [formGroup]="productForm"
+              (ngSubmit)="submitProduct(productForm)"
+            >
+              <div class="">
                 <div class="flex justify-content-center my-3">
                   <div class="flex flex-column gap-2">
                     <label for="name" class="d-block">Name</label>
@@ -30,7 +49,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="">
                 <div class="flex justify-content-center my-3">
                   <div class="flex flex-column gap-2">
                     <label for="price" class="d-block">Price</label>
@@ -48,7 +67,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="">
                 <div class="flex justify-content-center my-3">
                   <div class="flex flex-column gap-2">
                     <label for="priceDiscount" class="d-block"
@@ -68,7 +87,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="">
                 <div class="flex justify-content-center my-3">
                   <div class="flex flex-column gap-2">
                     <label for="productQuantity" class="d-block"
@@ -88,7 +107,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="">
                 <div class="flex justify-content-center my-3">
                   <div class="flex flex-column gap-2">
                     <label for="brand" class="d-block">brand</label>
@@ -105,7 +124,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="">
                 <div class="flex flex-column gap-2">
                   <div class="flex justify-content-center my-3">
                     <label for="category">Choose Category</label>
@@ -126,7 +145,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-12">
+              <div class="">
                 <div class="flex justify-content-center my-3">
                   <div class="flex flex-column gap-2">
                     <label for="description" class="d-block">description</label>
@@ -143,59 +162,73 @@
                   </div>
                 </div>
               </div>
+              <button
+                [disabled]="productForm.invalid"
+                class="btn btn-secondary m-auto d-block w-50"
+              >
+                <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+                <span *ngIf="!isLoading">Submit</span>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="images-wrapper bg-white p-3 rounded-2 border border-2">
+            <div class="img-cover border-black border-1 border p-1">
+              <div class="image-cont">
+                <p-image
+                  [src]="product.imgCover"
+                  alt="Image"
+                  width="100%"
+                  [preview]="true"
+                ></p-image>
+              </div>
             </div>
-            <button [disabled]="productForm.invalid" class="btn btn-secondary m-auto d-block w-50">
-              <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
-              <span *ngIf="!isLoading">Submit</span>
-            </button>
-          </form>
-        </ng-template>
-      </p-stepperPanel>
-      <p-stepperPanel header="Upload Images">
-        <ng-template
-          pTemplate="content"
-          let-prevCallback="prevCallback"
-          let-nextCallback="nextCallback"
-          let-index="index"
-        >
-          <div class="images-upload my-2">
-            <label
-              for="file-upload"
-              class="custom-file-upload m-auto d-block w-50 text-center fw-bold"
-              >Upload Cover Image</label
-            >
-            <input
-              class="upload-img"
-              id="file-upload"
-              type="file"
-              (change)="onFileSelected($event)"
-            />
+            <div class="images-upload my-2">
+              <label
+                for="file-upload"
+                class="custom-file-upload m-auto d-block w-50 text-center fw-bold"
+                >Upload Cover Image</label
+              >
+              <input
+                class="upload-img"
+                id="file-upload"
+                type="file"
+                (change)="onFileSelected($event)"
+              />
+            </div>
+            <div class="product-images border-black border-1 border p-1">
+              <div class="row g-2">
+                <div class="col-md-6" *ngFor="let i of product.images">
+                  <div class="image-cont">
+                    <p-image
+                      [src]="i"
+                      alt="Image"
+                      width="100%"
+                      [preview]="true"
+                    ></p-image>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="images-upload my-2">
+              <label
+                for="files-upload"
+                class="custom-file-upload m-auto d-block w-50 text-center fw-bold"
+                >Upload Images</label
+              >
+              <input
+                class="upload-img"
+                id="files-upload"
+                type="file"
+                multiple
+                (change)="onFilesSelected($event)"
+              />
+            </div>
           </div>
-          <div class="images-upload my-2">
-            <label
-              for="files-upload"
-              class="custom-file-upload m-auto d-block w-50 text-center fw-bold"
-              >Upload Images</label
-            >
-            <input
-              class="upload-img"
-              id="files-upload"
-              type="file"
-              multiple
-              (change)="onFilesSelected($event)"
-            />
-          </div>
-          <div class="images-upload my-2">
-            <button
-              class="btn btn-outline-secondary m-auto d-block w-50 text-center fw-bold"
-              (click)="addAnother()"
-            >
-              Add Another Product ?
-            </button>
-          </div>
-        </ng-template>
-      </p-stepperPanel>
-    </p-stepper>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

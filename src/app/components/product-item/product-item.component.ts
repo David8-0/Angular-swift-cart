@@ -19,6 +19,7 @@ export class ProductItemComponent implements OnInit{
   }
   
 
+
   delete(id:string):void {
     this.emitter.emit(`delete,${id}`);
   }

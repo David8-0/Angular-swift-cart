@@ -24,21 +24,19 @@ export class ProductService {
   }
 
   getProductById(id:string):Observable<any>{
-    return this._httpClient.get(`${this.baseUrl}`,{
-      headers:{
-        id
-      }
-    });
+    return this._httpClient.get(`${this.baseUrl}/${id}`);
   }
 
-  updateProductById(id:string,product:Product):Observable<any>{
-    return this._httpClient.patch(`${this.baseUrl}/${id}`,{
-      product:product
-    });
+  updateProductById(id:string,product:any):Observable<any>{
+    console.log(product);
+    console.log(id);
+    
+    return this._httpClient.patch(`${this.baseUrl}/${id}`,
+      product
+    );
   }
   updateProductImagesById(id:string,images:any):Observable<any>{
-    console.log();
-    
+
     return this._httpClient.patch(`${this.baseUrl}/${id}`,images);
   }
 
