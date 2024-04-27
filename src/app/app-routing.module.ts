@@ -1,3 +1,4 @@
+import { authGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -22,7 +23,7 @@ const routes: Routes = [
   {path:"register",component:RegisterComponent},
   {path:"profile",component:ProfileComponent},
   {path:"favorites",component:WishlistComponent},
-  { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
+  { path: 'cart',canActivate:[authGuard], loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
   { path: 'updateProduct', loadChildren: () => import('./update-product/update-product.module').then(m => m.UpdateProductModule) },
 ];
 

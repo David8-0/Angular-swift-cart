@@ -17,6 +17,7 @@ import { ResetPassword } from '../interfaces/reset-password';
       private _httpClient:HttpClient,
       private _userService:UsersService
     ) {
+      if(localStorage.getItem('token'))
       this.getuserData();
     }
 
