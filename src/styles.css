@@ -1,164 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "primeicons/primeicons.css";
-.barlow-semi-condensed-thin {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 100;
-    font-style: normal;
-  }
-  
-  .barlow-semi-condensed-thin-italic {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 100;
-    font-style: italic;
-  }
-  
-  .barlow-semi-condensed-extralight {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 200;
-    font-style: normal;
-  }
-  
-  .barlow-semi-condensed-extralight-italic {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 200;
-    font-style: italic;
-  }
-  
-  .barlow-semi-condensed-light {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-  }
-  
-  .barlow-semi-condensed-light-italic {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 300;
-    font-style: italic;
-  }
-  
-  .barlow-semi-condensed-regular {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  .barlow-semi-condensed-regular-italic {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 400;
-    font-style: italic;
-  }
-  
-  .barlow-semi-condensed-medium {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-  }
-  
-  .barlow-semi-condensed-medium-italic {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 500;
-    font-style: italic;
-  }
-  
-  .barlow-semi-condensed-semibold {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-  }
-  
-  .barlow-semi-condensed-semibold-italic {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 600;
-    font-style: italic;
-  }
-  
-  .barlow-semi-condensed-bold {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-  }
-  
-  .barlow-semi-condensed-bold-italic {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-  }
-  
-  .barlow-semi-condensed-extrabold {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 800;
-    font-style: normal;
-  }
-  
-  .barlow-semi-condensed-extrabold-italic {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 800;
-    font-style: italic;
-  }
-  
-  .barlow-semi-condensed-black {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 900;
-    font-style: normal;
-  }
-  
-  .barlow-semi-condensed-black-italic {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 900;
-    font-style: italic;
-  }
-  
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
  /****************************************************************************************/
 
 :root {
-  --light-color:#EAE6E3;
-  --dark-color:#2E2C39;
+  --main-color: #025048;
+  --sec-color:#F1F4F1;
   --light-brown:#55504C;
   --white-text:#FFFFFF;
-  --offWhite-text:#B4B9B0;
+  --sec-text:#424B4A;
+
 }
-.bg-lighColor{
-  background-color: var(--light-color);
-}
-.bg-darkColor{
-  background-color: var(--dark-color);
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+body{
+  font-family: "Playfair Display", serif;
+  color:white;
+  font-weight: 400;
+  font-style: normal;
 }
 .bg-lighBrown{
   background-color: var(--light-brown);
 }
-.white-text{
-  color:var(--white-text)
-}
-.ofWhite-text{
-  color:var(--offWhite-text)
-}
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-body{
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
+
 .cursor-pointer{
   cursor: pointer;
 }
-
-
 .hover-shadow-scale{
   transition: all 0.5s;
 }
-
 .hover-shadow-scale:hover {
   box-shadow:  2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   transform: scale(1.1);
 } 
-
 .hover-shadow-scale img{
   transition: all 0.5s;
 }
 .hover-shadow-scale:hover img{
   transform: scale(1.2);
 }
-
 .p-button {
   /* Override Bootstrap button styles */
   background-color: inherit;
@@ -167,7 +47,54 @@ body{
   border: inherit;
   /* Add any other styles you need */
 }
-
 .bg-offWhite{
   background-color: #F7F7F7;
+}
+.playfair-display-normal{
+font-family: "Playfair Display", serif;
+font-optical-sizing: auto;
+font-weight: 16;
+font-style: normal;
+}
+.playfair-display-h2{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: 48;
+  font-weight: 500;
+  font-style: normal;
+}
+.playfair-display-h4{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: 24;
+    font-weight: 500;
+    font-style: normal;
+}
+.bg-main-color{
+  background-color: var(--main-color);
+}
+.bg-sec-color{
+  background-color: var(--sec-color);
+}
+.sec-text-color{
+  color: var(--sec-text);
+}
+.white-text{
+  color:var(--white-text)
+}
+.main-text-font{
+  font-size: 48px;
+}
+.sec-text-font{
+  font-size: 24px;
+}
+.main-text-color{
+  color: var(--main-color);
+}
+
+.work-sans-normal {
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+
 }

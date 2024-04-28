@@ -1,5 +1,5 @@
 
 .min-height{
-    padding: 60px;
     min-height: calc(100vh - 90px);
+    padding-inline:0px ;
 }

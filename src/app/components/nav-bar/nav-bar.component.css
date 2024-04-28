@@ -1,3 +1,26 @@
 #logOut{
     cursor: pointer;
 }
+nav{
+    height: 100px;
+    
+}
+nav .nav-item:hover .nav-link{
+    transform: scale(1.2) !important;
+    color: white !important;
+}
+
+nav .nav-item .nav-link{
+    transition: all .3s ease-in !important;
+    padding: 0 16px;
+    text-align: center;
+}
+
+
+@media (max-width: 991.98px) {
+    nav .nav-item .nav-link{
+        transition: all .3s ease-in !important;
+        padding: 16 0px;
+        margin-top: 12px;
+    }
+ }
