@@ -7,13 +7,13 @@ import { Product } from '../../shared/interfaces/product';
   styleUrl: './product-item.component.css'
 })
 export class ProductItemComponent implements OnInit{
-  heartClass:string="fa-regular";
+  heartClass:string="";
   constructor(){}
   @Input() holder:Product={} as Product;
-  @Input() mode:string="";   // wishlist seller user 
+  @Input() mode:string="seller";   // wishlist seller user 
   @Output() emitter:EventEmitter<any> = new EventEmitter();
   ngOnInit(): void {
-    if(this.holder.isfavorite)  this.heartClass="fa-solid";
+    if(this.holder.isfavorite)  this.heartClass="text-danger";
     console.log(this.holder);
     
   }
@@ -23,16 +23,17 @@ export class ProductItemComponent implements OnInit{
   delete(id:string):void {
     this.emitter.emit(`delete,${id}`);
   }
-  addToCart(id:string):void {
+  addToCart(event:MouseEvent,id:string):void {
+    event.stopImmediatePropagation()
     this.emitter.emit(`addToCart,${id}`);
   }
   addToFavorite(id:string):void {
-    if(this.heartClass == "fa-regular"){
+    if(this.heartClass == ""){
       this.emitter.emit(`addToFavorites,${id}`);
-      this.heartClass="fa-solid";
+      this.heartClass="text-danger";
     }else{
       this.emitter.emit(`removeFromFavorites,${id}`);
-      this.heartClass = "fa-regular"
+      this.heartClass = ""
     }
     
   }

@@ -1,27 +1,46 @@
-<div class="card hover-shadow-scale p-2">
-  <h4 class="text-center mb-0">{{ holder.name }}</h4>
-  <span class="text-info">{{ holder.description }}</span>
-  <div class="img-container overflow-hidden">
-    <img alt="Card" [src]="holder.imgCover" class="w-100 pb-2 hover" />
+<div class="p-2 product-card">
+ 
+  
+ 
+
+  <div class="cover-img-container overflow-hidden position-relative">
+    <img alt="Card" [src]="holder.imgCover" class="w-100 pb-2 cover-img" />
+    <div class="hover-layer position-absolute z-3 top-0 start-0 w-100 h-100">
+      <div class="iconz  d-flex flex-column position-absolute end-0 top-50 translate-middle-y">
+        <i class="fa-solid fa-cart-plus  mx-3 cursor-pointer"  (click)="addToCart($event,holder._id)" (mousedown)="$event.stopPropagation()"></i>
+        <i class="fa-solid fa-heart-circle-plus m-3  cursor-pointer {{heartClass}}"  (click)="addToFavorite(holder._id)"></i>
+      </div>
+      <span class="out-of-stock p-2 rounded mx-1  bg-white work-sans-normal sec-text-color" *ngIf="holder.productQuantity">out of stock!</span>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="">
+      <span class=" product-span work-sans-normal sec-text-color">{{ holder.category }}category</span>
+    <h4 class="mb-0 playfair-display-h2 main-text-color">{{ holder.name }}</h4>
+    </div>
+    <a [routerLink]="['/product-details',holder._id]" class="my-2 text-decoration-none main-text-color details p-1 rounded">details</a>
   </div>
 
+  
   <div class="data-container d-flex justify-content-between">
-    <span class="text-success"> price:{{ holder.price }} </span>
-    <span class="text-danger"> rating: {{ holder.rating }} </span>
+    <span class="work-sans-normal sec-text-color price">{{holder.price| currency:'EGP':'symbol':'1.2-2'}} </span>
+    <div class="flex justify-content-center">
+      <p-rating
+        [disabled]="false"
+        [(ngModel)]="holder.rating "
+        [cancel]="false"
+      ></p-rating>
+    </div>
   </div>
 
-  <div class="buttons-container d-flex justify-content-between">
-    
-    <i class="{{heartClass}} fa-heart fs-4 text-danger"[class.fa-solid]="" (click)="addToFavorite(holder._id)"></i>
-  </div>
+
+
 
   <button class="btn btn-danger w-100 my-2" (click)="delete(holder._id)" *ngIf=" mode=='seller' ">
     Delete
   </button>
-  <button class="btn btn-success my-2" (click)="addToCart(holder._id)">
-    add to Cart
-  </button>
-  <a class="btn btn-outline-primary my-2" [routerLink]="['/updateProduct/edit-product',holder._id]" >
+
+  <a *ngIf=" mode=='seller'" class="btn btn-outline-primary my-2" [routerLink]="['/updateProduct/edit-product',holder._id]" >
     Edit Product
   </a>
 </div>

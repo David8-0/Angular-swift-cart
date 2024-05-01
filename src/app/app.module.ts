@@ -36,6 +36,11 @@ import { BadgeModule } from 'primeng/badge';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { MessageService,ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { RatingModule } from 'primeng/rating';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { GalleriaModule } from 'primeng/galleria';
+import { ImageModule } from 'primeng/image';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +55,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     CategoriesComponent,
     ProfileComponent,
     ProductItemComponent,
-    WishlistComponent
+    WishlistComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +81,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     CardModule,
     PaginatorModule,
     BadgeModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RatingModule,
+    GalleriaModule,
+    ImageModule
   ],
   providers: [provideHttpClient(withInterceptors([
     myHttpInterceptor

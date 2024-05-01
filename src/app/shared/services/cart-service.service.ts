@@ -23,15 +23,17 @@ export class CartServiceService {
     })
   }
 
-  addProduct(id:string):Observable<any>{
+  addProduct(id:string,num:number=0):Observable<any>{
     return this._httpClient.post(`${this.baseUrl}`,{
-      productId:id
+      productId:id,
+      num
     });
   }
 
-  removeProduct(id:string):Observable<any>{
+  removeProduct(id:string,num:number=0):Observable<any>{
     return this._httpClient.patch(`${this.baseUrl}`,{
-      productId:id
+      productId:id,
+      num
     });
   }
 

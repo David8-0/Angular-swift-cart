@@ -59,7 +59,7 @@ export class EditProductComponent implements OnInit{
       this._productService.updateProductById(this.productId,form.value).subscribe({
         next:(res)=>{
           this.isLoading = false;
-          this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Your Product added Please upload images' });
+          this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Your Product updated successfuly' });
           console.log(res);
         },
         error:(err)=>{

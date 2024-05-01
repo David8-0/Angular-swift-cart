@@ -4,7 +4,7 @@ import { Product } from '../../shared/interfaces/product';
 import { ProductService } from '../../shared/services/product.service';
 import { CartServiceService } from '../../shared/services/cart-service.service';
 import { FavoritesServiceService } from '../../shared/services/favorites-service.service';
-
+import { MessageService } from 'primeng/api';
 interface PageEvent  {
   first: number;
   rows: number;
@@ -25,7 +25,8 @@ export class ProductsComponent implements OnInit{
     private _authService : AuthenticationService,
     private _productService: ProductService,
     private _cartService: CartServiceService,
-    private _favoritesService: FavoritesServiceService
+    private _favoritesService: FavoritesServiceService,
+    private messageService: MessageService
   ){}
 
   ngOnInit (): void {
@@ -53,7 +54,9 @@ export class ProductsComponent implements OnInit{
 
   deleteProduct(productId:string){
     this._productService.deleteProductById(productId).subscribe({
-      next:(data)=>{this.data=data.data},
+      next:(data)=>{this.data=data.data;
+        this.messageService.add({ severity: 'info', summary: 'Info', detail: 'your product has been deleted' });
+      },
       error:(err)=>console.log(err),
     })
   }
@@ -63,6 +66,7 @@ export class ProductsComponent implements OnInit{
       next:(res)=>{
         this._cartService.numOfItems.next(res.data.numberOfItems);
         this._cartService.cartItems.next(res.data.cart);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'product added to your cart' });
       },
       error:(err)=>console.log(err),
       complete:()=>console.log("Done") 
@@ -73,6 +77,7 @@ export class ProductsComponent implements OnInit{
     this._favoritesService.add(productId).subscribe({
       next:(res)=>{
         this._favoritesService.favoriteItems.next(res.data.favorites);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'product added to your Favorites' });
       },
       error:(err)=>console.log(err),
       complete:()=>console.log("Done") 
@@ -83,6 +88,7 @@ export class ProductsComponent implements OnInit{
     this._favoritesService.remove(productId).subscribe({
       next:(res)=>{
         this._favoritesService.favoriteItems.next(res.data.favorites);
+        this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Your Product removed from your favorites' });
       },
       error:(err)=>console.log(err),
       complete:()=>console.log("Done") 

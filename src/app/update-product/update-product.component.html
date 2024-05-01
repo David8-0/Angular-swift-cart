@@ -1,202 +1,205 @@
-<div class="my-4 p-5 rounded-3 shadow-sm border-3 border bg-offWhite w-100">
-  <h1>Add Product</h1>
-  <div class="card p-3">
-    <p-stepper [linear]="true" [activeStep]="activeStep">
-      <p-stepperPanel header="Product Info">
-        <ng-template
-          pTemplate="content"
-          let-nextCallback="nextCallback"
-          let-index="index"
-        >
-          <form
-            [formGroup]="productForm"
-            (ngSubmit)="submitProduct(productForm)"
-          >
-            <div class="row">
-              <div class="col-md-6">
-                <div class="flex justify-content-center my-3">
-                  <div class="flex flex-column gap-2">
-                    <label for="name" class="d-block">Name</label>
-                    <input
-                      formControlName="name"
-                      pInputText
-                      id="name"
-                      aria-describedby="name-help"
-                      class="w-100"
-                    />
-                    <small id="name-help" class="d-block"
-                      >Enter your Product name.</small
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="flex justify-content-center my-3">
-                  <div class="flex flex-column gap-2">
-                    <label for="price" class="d-block">Price</label>
-                    <input
-                      formControlName="price"
-                      pInputText
-                      id="price"
-                      aria-describedby="price-help"
-                      type="number"
-                      class="w-100"
-                    />
-                    <small id="price-help" class="d-block"
-                      >Enter your Product price in EGP.</small
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="flex justify-content-center my-3">
-                  <div class="flex flex-column gap-2">
-                    <label for="priceDiscount" class="d-block"
-                      >price Discount in EGP</label
-                    >
-                    <input
-                      formControlName="priceDiscount"
-                      pInputText
-                      id="priceDiscount"
-                      aria-describedby="priceDiscount-help"
-                      type="number"
-                      class="w-100"
-                    />
-                    <small id="priceDiscount-help" class="d-block"
-                      >Enter your Product price Discount in EGP.</small
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="flex justify-content-center my-3">
-                  <div class="flex flex-column gap-2">
-                    <label for="productQuantity" class="d-block"
-                      >product Quantity</label
-                    >
-                    <input
-                      formControlName="productQuantity"
-                      pInputText
-                      id="productQuantity"
-                      aria-describedby="productQuantity-help"
-                      type="number"
-                      class="w-100"
-                    />
-                    <small id="productQuantity-help" class="d-block"
-                      >Enter your Product quantity</small
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="flex justify-content-center my-3">
-                  <div class="flex flex-column gap-2">
-                    <label for="brand" class="d-block">brand</label>
-                    <input
-                      formControlName="brand"
-                      pInputText
-                      id="brand"
-                      aria-describedby="brand-help"
-                      class="w-100"
-                    />
-                    <small id="brand-help" class="d-block"
-                      >Enter your Product brand.</small
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="flex flex-column gap-2">
-                  <div class="flex justify-content-center my-3">
-                    <label for="category">Choose Category</label>
-                    <select
-                      name="category"
-                      id="category"
-                      class="form-control w-100 h-100"
-                      formControlName="category"
-                    >
-                      <option value="Electronics">Electronics</option>
-                      <option value="Food">Food</option>
-                      <option value="Jewelry">Jewelry</option>
-                      <option value="Games">Games</option>
-                      <option value="Fashion">Fashion</option>
-                      <option value="Sports">Sports</option>
-                      <option value="other">other</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="flex justify-content-center my-3">
-                  <div class="flex flex-column gap-2">
-                    <label for="description" class="d-block">description</label>
-                    <textarea
-                      formControlName="description"
-                      class="w-100"
-                      rows="4"
-                      cols="30"
-                      id="description"
-                      aria-describedby="description-help"
-                      pInputTextarea
-                      [autoResize]="false"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button [disabled]="productForm.invalid" class="btn btn-secondary m-auto d-block w-50">
-              <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
-              <span *ngIf="!isLoading">Submit</span>
-            </button>
-          </form>
-        </ng-template>
-      </p-stepperPanel>
-      <p-stepperPanel header="Upload Images">
-        <ng-template
-          pTemplate="content"
-          let-prevCallback="prevCallback"
-          let-nextCallback="nextCallback"
-          let-index="index"
-        >
-          <div class="images-upload my-2">
-            <label
-              for="file-upload"
-              class="custom-file-upload m-auto d-block w-50 text-center fw-bold"
-              >Upload Cover Image</label
-            >
-            <input
-              class="upload-img"
-              id="file-upload"
-              type="file"
-              (change)="onFileSelected($event)"
-            />
-          </div>
-          <div class="images-upload my-2">
-            <label
-              for="files-upload"
-              class="custom-file-upload m-auto d-block w-50 text-center fw-bold"
-              >Upload Images</label
-            >
-            <input
-              class="upload-img"
-              id="files-upload"
-              type="file"
-              multiple
-              (change)="onFilesSelected($event)"
-            />
-          </div>
-          <div class="images-upload my-2">
-            <button
-              class="btn btn-outline-secondary m-auto d-block w-50 text-center fw-bold"
-              (click)="addAnother()"
-            >
-              Add Another Product ?
-            </button>
-          </div>
-        </ng-template>
-      </p-stepperPanel>
-    </p-stepper>
-  </div>
-</div>
 
-<p-toast></p-toast>
+<div class="container">
+  <div class="my-4 p-5 rounded-3 shadow-sm border-3 border bg-offWhite w-100">
+    <h1 class="playfair-display-h2 main-text-color">Add Product</h1>
+    <div class="card p-3">
+      <p-stepper [linear]="true" [activeStep]="activeStep">
+        <p-stepperPanel header="Product Info">
+          <ng-template
+            pTemplate="content"
+            let-nextCallback="nextCallback"
+            let-index="index"
+          >
+            <form
+              [formGroup]="productForm"
+              (ngSubmit)="submitProduct(productForm)"
+            >
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="flex justify-content-center my-3">
+                    <div class="flex flex-column gap-2">
+                      <label for="name" class="d-block">Name</label>
+                      <input
+                        formControlName="name"
+                        pInputText
+                        id="name"
+                        aria-describedby="name-help"
+                        class="w-100"
+                      />
+                      <small id="name-help" class="d-block"
+                        >Enter your Product name.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="flex justify-content-center my-3">
+                    <div class="flex flex-column gap-2">
+                      <label for="price" class="d-block">Price</label>
+                      <input
+                        formControlName="price"
+                        pInputText
+                        id="price"
+                        aria-describedby="price-help"
+                        type="number"
+                        class="w-100"
+                      />
+                      <small id="price-help" class="d-block"
+                        >Enter your Product price in EGP.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="flex justify-content-center my-3">
+                    <div class="flex flex-column gap-2">
+                      <label for="priceDiscount" class="d-block"
+                        >price Discount in EGP</label
+                      >
+                      <input
+                        formControlName="priceDiscount"
+                        pInputText
+                        id="priceDiscount"
+                        aria-describedby="priceDiscount-help"
+                        type="number"
+                        class="w-100"
+                      />
+                      <small id="priceDiscount-help" class="d-block"
+                        >Enter your Product price Discount in EGP.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="flex justify-content-center my-3">
+                    <div class="flex flex-column gap-2">
+                      <label for="productQuantity" class="d-block"
+                        >product Quantity</label
+                      >
+                      <input
+                        formControlName="productQuantity"
+                        pInputText
+                        id="productQuantity"
+                        aria-describedby="productQuantity-help"
+                        type="number"
+                        class="w-100"
+                      />
+                      <small id="productQuantity-help" class="d-block"
+                        >Enter your Product quantity</small
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="flex justify-content-center my-3">
+                    <div class="flex flex-column gap-2">
+                      <label for="brand" class="d-block">brand</label>
+                      <input
+                        formControlName="brand"
+                        pInputText
+                        id="brand"
+                        aria-describedby="brand-help"
+                        class="w-100"
+                      />
+                      <small id="brand-help" class="d-block"
+                        >Enter your Product brand.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="flex flex-column gap-2">
+                    <div class="flex justify-content-center my-3">
+                      <label for="category">Choose Category</label>
+                      <select
+                        name="category"
+                        id="category"
+                        class="form-control w-100 h-100"
+                        formControlName="category"
+                      >
+                        <option value="Electronics">Electronics</option>
+                        <option value="Food">Food</option>
+                        <option value="Jewelry">Jewelry</option>
+                        <option value="Games">Games</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Sports">Sports</option>
+                        <option value="other">other</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="flex justify-content-center my-3">
+                    <div class="flex flex-column gap-2">
+                      <label for="description" class="d-block">description</label>
+                      <textarea
+                        formControlName="description"
+                        class="w-100"
+                        rows="4"
+                        cols="30"
+                        id="description"
+                        aria-describedby="description-help"
+                        pInputTextarea
+                        [autoResize]="false"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button [disabled]="productForm.invalid" class="btn btn-secondary m-auto d-block w-50">
+                <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+                <span *ngIf="!isLoading">Submit</span>
+              </button>
+            </form>
+          </ng-template>
+        </p-stepperPanel>
+        <p-stepperPanel header="Upload Images">
+          <ng-template
+            pTemplate="content"
+            let-prevCallback="prevCallback"
+            let-nextCallback="nextCallback"
+            let-index="index"
+          >
+            <div class="images-upload my-2">
+              <label
+                for="file-upload"
+                class="custom-file-upload m-auto d-block w-50 text-center fw-bold"
+                >Upload Cover Image</label
+              >
+              <input
+                class="upload-img"
+                id="file-upload"
+                type="file"
+                (change)="onFileSelected($event)"
+              />
+            </div>
+            <div class="images-upload my-2">
+              <label
+                for="files-upload"
+                class="custom-file-upload m-auto d-block w-50 text-center fw-bold"
+                >Upload Images</label
+              >
+              <input
+                class="upload-img"
+                id="files-upload"
+                type="file"
+                multiple
+                (change)="onFilesSelected($event)"
+              />
+            </div>
+            <div class="images-upload my-2">
+              <button
+                class="btn btn-outline-secondary m-auto d-block w-50 text-center fw-bold"
+                (click)="addAnother()"
+              >
+                Add Another Product ?
+              </button>
+            </div>
+          </ng-template>
+        </p-stepperPanel>
+      </p-stepper>
+    </div>
+  </div>
+  
+  <p-toast></p-toast>
+</div>

@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { EditProductComponent } from './update-product/components/edit-product/edit-product.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 const routes: Routes = [
   {path:"",redirectTo:"home",pathMatch:"full"},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path:"register",component:RegisterComponent},
   {path:"profile",component:ProfileComponent},
   {path:"favorites",component:WishlistComponent},
+  {path:"product-details/:id",component:ProductDetailsComponent},
   { path: 'cart',canActivate:[authGuard], loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
   { path: 'updateProduct', loadChildren: () => import('./update-product/update-product.module').then(m => m.UpdateProductModule) },
 ];
