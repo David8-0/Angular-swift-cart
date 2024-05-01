@@ -1,0 +1,33 @@
+.common-main-btn{
+    padding: 15px 30px;
+    display: block;
+    
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid white;
+    transition: all 0.2s ease-in;
+    width: fit-content;
+    
+}
+.style1{
+    background-color: var(--white-text);
+    color:var(--main-color)
+}
+
+.style1:hover{
+    color:white;
+    background-color: var(--main-color);
+}
+
+
+
+.style2{
+    background-color: var(--main-color);
+    color:var(--white-text)
+}
+.style2:hover{
+    background-color: var(--white-text);
+    color:var(--main-color)
+}
+
