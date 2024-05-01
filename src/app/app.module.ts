@@ -40,6 +40,8 @@ import { RatingModule } from 'primeng/rating';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { GalleriaModule } from 'primeng/galleria';
 import { ImageModule } from 'primeng/image';
+import { CarouselComponent } from './Components/Utilites/carousel/carousel.component';
+import { TestComponent } from './Components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { ImageModule } from 'primeng/image';
     ProfileComponent,
     ProductItemComponent,
     WishlistComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CarouselComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
