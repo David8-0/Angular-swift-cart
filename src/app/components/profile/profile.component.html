@@ -143,10 +143,8 @@
     
 
       <div class="buttons d-flex justify-content-around" *ngIf="editable">
-        <button class="btn btn-secondary" (click)="showDialog()">
-          change password
-        </button>
-        <button class="btn btn-success" (click)="submitUserInfo(updateUserForm)">Submit</button>
+        <app-btn [style]="'style2'" (click)="showDialog()" [text]="'change password'"></app-btn>
+        <app-btn [style]="'style2'" (click)="submitUserInfo(updateUserForm)" [text]="'Submit'"></app-btn>
       </div>
 
     </div>
@@ -165,8 +163,7 @@
        
         <div class="controls mt-4 w-100 d-flex justify-content-center">
           <input class="upload-img" id="file-upload" type="file" (change)="onFileSelected($event)">
-          
-          <button  class="btn btn-info" (click)="edit()">Edit</button>
+          <app-btn [style]="'style2'" (click)="edit()" [text]="'Edit'"></app-btn>
         </div>
       </div>
     </div>
@@ -252,13 +249,7 @@
     </div>
 </form>
   <ng-template pTemplate="footer">
-    <button
-      [autofocus]="true"
-      class="btn btn-secondary btn-lg d-block m-auto mt-3"
-        (click)="submitUserPassword(updateUserPasswordForm)"
-    >
-      submit
-    </button>
+    <app-btn [autofocus]="true" [style]="'style2'" (click)="submitUserPassword(updateUserPasswordForm)" [text]="'submit'"></app-btn>
   </ng-template>
 </p-dialog>
 

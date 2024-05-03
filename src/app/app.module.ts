@@ -42,6 +42,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { ImageModule } from 'primeng/image';
 import { CarouselComponent } from './Components/Utilites/carousel/carousel.component';
 import { TestComponent } from './Components/test/test.component';
+import { BtnComponent } from './components/Utilites/btn/btn.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { TestComponent } from './Components/test/test.component';
     WishlistComponent,
     ProductDetailsComponent,
     CarouselComponent,
-    TestComponent
+    TestComponent,
+    BtnComponent
   ],
   imports: [
     BrowserModule,

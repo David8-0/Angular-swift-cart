@@ -2,36 +2,14 @@
   <div class="row">
     <div class="col-md-6">
       <div class="row">
-        <div class="col-md-3">
-          <div class="flex flex-column">
-            <div
-              class="flex justify-content-center my-2"
-              *ngFor="let img of images"
-            >
-              <p-image
-                [src]="img"
-                alt="Image"
-                width="100%"
-                [preview]="true"
-              ></p-image>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-9">
-          <p-image
-            [src]="product.imgCover"
-            alt="Image"
-            width="100%"
-            [preview]="true"
-          ></p-image>
-        </div>
+        <app-carousel [slides]="images"></app-carousel>
       </div>
     </div>
     <div class="col-md-6">
-      <span class="work-sans-normal main-text-color">{{product.category}}</span>
-      <h1 class="main-text-color playfair-display-normal">{{product.name}}</h1>
-      <span class="work-sans-normal sec-text-color fw-bold">{{product.price| currency:'EGP':'symbol':'1.2-2'}} </span>
-      <p class="work-sans-normal sec-text-color">
+      <span class="work-sans-normal main-text-color my-2">{{product.category}}</span>
+      <h1 class="main-text-color playfair-display-normal my-2">{{product.name}}</h1>
+      <span class="work-sans-normal sec-text-color fw-bold my-2">{{product.price| currency:'EGP':'symbol':'1.2-2'}} </span>
+      <p class="work-sans-normal sec-text-color my-2">
         {{product.description}}
       </p>
       <div class="cart-handling d-flex align-items-center">
@@ -53,3 +31,28 @@
     </div>
   </div>
 </div>
+
+
+<!-- <div class="col-md-3">
+  <div class="flex flex-column">
+    <div
+      class="flex justify-content-center my-2"
+      *ngFor="let img of images"
+    >
+      <p-image
+        [src]="img"
+        alt="Image"
+        width="100%"
+        [preview]="true"
+      ></p-image>
+    </div>
+  </div>
+</div>
+<div class="col-md-9">
+  <p-image
+    [src]="product.imgCover"
+    alt="Image"
+    width="100%"
+    [preview]="true"
+  ></p-image>
+</div> -->

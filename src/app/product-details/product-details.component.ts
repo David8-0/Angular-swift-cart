@@ -5,7 +5,9 @@ import { ProductService } from '../shared/services/product.service';
 import { User } from '../shared/interfaces/user';
 import { CartServiceService } from '../shared/services/cart-service.service';
 import { MessageService } from 'primeng/api';
-
+interface Iimage {
+  src: any;
+}
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -20,9 +22,10 @@ export class ProductDetailsComponent implements OnInit{
     private messageService: MessageService
   ){}
   productNum:number =0;
-  images: string[] = [];
+  images: Iimage[] = [];
   productId:string="";
   product:Product = {} as Product;
+
   responsiveOptions: any[] = [
       {
           breakpoint: '1024px',
@@ -45,8 +48,11 @@ export class ProductDetailsComponent implements OnInit{
     this._productService.getProductById(this.productId).subscribe({
       next:(res)=>{
         this.product = res.data.product;
-        this.images = res.data.product.images;
-        console.log(this.images);
+        let imagesData = res.data.product.images;
+        this.images = imagesData.map((i:any) =>{ return  {src:i} as Iimage });
+        this.images.push({src:this.product.imgCover} as Iimage);
+        console.log({src:this.images});
+        
         
       }
     });
