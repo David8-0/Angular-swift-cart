@@ -7,7 +7,7 @@ import { Product } from '../../shared/interfaces/product';
   styleUrl: './product-item.component.css'
 })
 export class ProductItemComponent implements OnInit{
-  heartClass:string="";
+  heartClass:string="text-white";
   constructor(){}
   @Input() holder:Product={} as Product;
   @Input() mode:string="seller";   // wishlist seller user 
@@ -20,20 +20,18 @@ export class ProductItemComponent implements OnInit{
   
 
 
-  delete(id:string):void {
-    this.emitter.emit(`delete,${id}`);
-  }
+
   addToCart(event:MouseEvent,id:string):void {
     event.stopImmediatePropagation()
     this.emitter.emit(`addToCart,${id}`);
   }
   addToFavorite(id:string):void {
-    if(this.heartClass == ""){
+    if(this.heartClass == "text-white"){
       this.emitter.emit(`addToFavorites,${id}`);
       this.heartClass="text-danger";
     }else{
       this.emitter.emit(`removeFromFavorites,${id}`);
-      this.heartClass = ""
+      this.heartClass = "text-white"
     }
     
   }

@@ -2,29 +2,62 @@
   <div class="row">
     <div class="col-md-6">
       <div class="row">
-        <app-carousel [slides]="images"></app-carousel>
+        <div class="carousel-cont">
+          <app-carousel [slides]="images"></app-carousel>
+        </div>
       </div>
     </div>
     <div class="col-md-6">
-      <span class="work-sans-normal main-text-color my-2">{{product.category}}</span>
-      <h1 class="main-text-color playfair-display-normal my-2">{{product.name}}</h1>
-      <span class="work-sans-normal sec-text-color fw-bold my-2">{{product.price| currency:'EGP':'symbol':'1.2-2'}} </span>
+      <span class="work-sans-normal main-text-color my-2">{{
+        product.category
+      }}</span>
+      <h1 class="main-text-color playfair-display-normal my-2">
+        {{ product.name }}
+      </h1>
+      @if (product.priceDiscount > 0) {
+      <span class="work-sans-normal text-secondary fw-bold my-2 text-decoration-line-through">{{
+        product.price | currency : "EGP" : "symbol" : "1.2-2"
+      }}</span><br>
+      <span class="work-sans-normal sec-text-color fw-bold my-2">{{
+        product.actualPrice | currency : "EGP" : "symbol" : "1.2-2"
+      }}</span>
+      }@else {
+      <span class="work-sans-normal sec-text-color fw-bold my-2"
+        >{{ product.price | currency : "EGP" : "symbol" : "1.2-2" }}
+      </span>
+      }
       <p class="work-sans-normal sec-text-color my-2">
-        {{product.description}}
+        {{ product.description }}
       </p>
       <div class="cart-handling d-flex align-items-center">
         <div class="qty d-flex border me-4">
-          <a class="text-decoration-none text-black px-2  cursor-pointer" (click)="decreaseNumber()">-</a>
-          <span class="work-sans-normal qty-num  px-2 border">{{productNum}}</span>
-          <a class="text-decoration-none text-black px-2  cursor-pointer" (click)="this.productNum=this.productNum+1">+</a>
+          <a
+            class="text-decoration-none text-black px-2 cursor-pointer"
+            (click)="decreaseNumber()"
+            >-</a
+          >
+          <span class="work-sans-normal qty-num px-2 border">{{
+            productNum
+          }}</span>
+          <a
+            class="text-decoration-none text-black px-2 cursor-pointer"
+            (click)="this.productNum = this.productNum + 1"
+            >+</a
+          >
         </div>
-        <a class=" add-btn" (click)="addToCart(product._id)">ADD TO CART</a>
+        <a class="add-btn" (click)="addToCart(product._id)">ADD TO CART</a>
       </div>
-      <span class="work-sans-normal main-text-color">Available Quantity:{{product.productQuantity}}</span>
+      <span class="work-sans-normal main-text-color"
+        >Available Quantity:{{ product.productQuantity }}</span
+      >
       <div class="line"></div>
-      <p class="work-sans-normal sec-text-color fw-bold">Free shipping on orders over $50!</p>
+      <p class="work-sans-normal sec-text-color fw-bold">
+        Free shipping on orders over $50!
+      </p>
       <ul class="list-unstyled sec-text-color">
-        <li><i class="fa-solid fa-circle-check"></i>No-Risk Money Back Guarantee!</li>
+        <li>
+          <i class="fa-solid fa-circle-check"></i>No-Risk Money Back Guarantee!
+        </li>
         <li><i class="fa-solid fa-circle-check"></i>No Hassle Refunds</li>
         <li><i class="fa-solid fa-circle-check"></i>Secure Payments</li>
       </ul>
@@ -32,27 +65,3 @@
   </div>
 </div>
 
-
-<!-- <div class="col-md-3">
-  <div class="flex flex-column">
-    <div
-      class="flex justify-content-center my-2"
-      *ngFor="let img of images"
-    >
-      <p-image
-        [src]="img"
-        alt="Image"
-        width="100%"
-        [preview]="true"
-      ></p-image>
-    </div>
-  </div>
-</div>
-<div class="col-md-9">
-  <p-image
-    [src]="product.imgCover"
-    alt="Image"
-    width="100%"
-    [preview]="true"
-  ></p-image>
-</div> -->

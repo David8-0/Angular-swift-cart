@@ -12,10 +12,14 @@ import { ToastModule } from 'primeng/toast';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ImageModule } from 'primeng/image';
 import { RatingModule } from 'primeng/rating';
+import { SellerProductsComponent } from './components/seller-products/seller-products.component';
+import { DialogModule } from 'primeng/dialog';
+
 @NgModule({
   declarations: [
     UpdateProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    SellerProductsComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +32,8 @@ import { RatingModule } from 'primeng/rating';
     InputTextareaModule,
     ToastModule,
     ImageModule,
-    RatingModule
+    RatingModule,
+    DialogModule
   ],
   providers:[MessageService,ConfirmationService]
 })

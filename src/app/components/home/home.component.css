@@ -1,4 +1,6 @@
-
+#sec-1,#sec-4{
+    color: white;
+}
 #sec-1 .home-content{
     padding-block:100px ;
 }

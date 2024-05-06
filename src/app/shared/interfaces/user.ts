@@ -6,7 +6,7 @@ export interface User {
     email:string,
     password:string,
     confirmPassword:string,
-    role:["user","seller"],
+    role:['user','seller'],
     Age:number,
     phone:string,
     img:any,
@@ -14,4 +14,9 @@ export interface User {
     cart:Cart,
     favorites:Product[],
     sellerProducts:Product[],
+}
+
+export enum Role{
+    user,
+    seller
 }

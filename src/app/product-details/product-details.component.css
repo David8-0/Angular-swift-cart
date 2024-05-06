@@ -25,3 +25,7 @@
     border-top: 1px solid var(--sec-text);
     margin-block: 20px;
 }
+
+.carousel-cont{
+    aspect-ratio: 4/3;
+}

@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="my-4 p-3 rounded-3 shadow-sm border-3 border">
+    <h1>Your orders</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table table-bordered table-hover w-100 work-sans-normal">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">order number</th>
+              <th scope="col" class="text-center">Date</th>
+              <th scope="col" class="text-center">total price</th>
+              <th scope="col" class="text-center">status</th>
+              <th scope="col" class="text-center">control</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of userOrders; track $index) {
+            <tr class="">
+              <td class="">{{ item._id }}</td>
+              <td class="text-center ">{{ item.date | date : "short" }}</td>
+              <td class="">
+                {{ item.totalPrice | currency : "EGP" : "symbol" : "1.2-2" }}
+              </td>
+              <td class="">{{ item.status }}</td>
+              <td>
+                <button class="btn btn-outline-secondary main-text-color" (click)="showList(item.products,item.totalPrice)">show Details</button>
+              </td>
+            </tr>
+            }
+            <tr *ngIf="userOrders.length < 1">
+              <td colspan="4">
+                <p class="playfair-display-h2 text-center">
+                  you have no orders
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <app-cart-list [data]="productList" [totalPrice]="listTotalPrice"></app-cart-list>
+      </div>
+    </div>
+  </div>
+</div>

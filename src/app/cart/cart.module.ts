@@ -12,10 +12,19 @@ import { MessageService,ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { TrimStringPipe } from './pipes/pipes/trim-string.pipe';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { CartListComponent } from './cart-list/cart-list.component';
 @NgModule({
   declarations: [
     CartComponent,
-    CartItemComponent
+    CartItemComponent,
+    CheckOutComponent,
+    TrimStringPipe,
+    MyOrdersComponent,
+    CartListComponent,
+    
   ],
   imports: [
     CommonModule,

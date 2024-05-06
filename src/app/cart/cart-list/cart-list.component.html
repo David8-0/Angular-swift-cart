@@ -1,0 +1,33 @@
+<div class="card sec-text-color work-sans-normal">
+  <div
+    class="card rounded-0 product-item d-flex flex-row justify-content-between"
+  >
+    <span>Product</span>
+    <span>Total</span>
+  </div>
+  @for (item of data; track $index) {
+  <div
+    class="card rounded-0 product-item d-flex flex-row justify-content-between"
+  >
+    <div class="">
+      <img [src]="item.imgCover" alt="product-image" class="me-3" />
+      <span>{{ item.name }}</span> x
+      <span>{{ item.productQuantity }}</span>
+    </div>
+    <span class="d-flex align-items-center">
+      {{
+        item.actualPrice * item.productQuantity
+          | currency : "EGP" : "symbol" : "1.2-2"
+      }}
+    </span>
+  </div>
+  }
+  <div
+    class="card rounded-0 product-item d-flex flex-row justify-content-between fw-bold"
+  >
+    <span class="sec-text-color">Total</span>
+    <span class="sec-text-color">{{
+      totalPrice | currency : "EGP" : "symbol" : "1.2-2"
+    }}</span>
+  </div>
+</div>

@@ -14,8 +14,8 @@ export class ProductService {
     return this._httpClient.post(`${this.baseUrl}`,p);
   }
 
-  getProducts(limit:number,page:number):Observable<any>{
-    return this._httpClient.get(`${this.baseUrl}`,{
+  getProducts(limit:number,page:number,params:string=""):Observable<any>{
+    return this._httpClient.get(`${this.baseUrl}${params}`,{
       params:{
         limit,
         page
@@ -53,11 +53,7 @@ export class ProductService {
   }
 
   getSellerProducts(id:string):Observable<any>{
-    return this._httpClient.get(`${this.baseUrl}`,{
-      headers:{
-        id
-      }
-    });
+    return this._httpClient.get(`${this.baseUrl}/seller/${id}`);
   }
 
   filterProducts(products:Product[],favorites:Product[]){

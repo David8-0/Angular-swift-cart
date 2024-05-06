@@ -1,16 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 import { Product } from '../../shared/interfaces/product';
 import { ProductService } from '../../shared/services/product.service';
 import { CartServiceService } from '../../shared/services/cart-service.service';
 import { FavoritesServiceService } from '../../shared/services/favorites-service.service';
 import { MessageService } from 'primeng/api';
-interface PageEvent  {
-  first: number;
-  rows: number;
-  page: number;
-  pageCount: number;
-}
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-products',
@@ -19,46 +15,104 @@ interface PageEvent  {
 })
 export class ProductsComponent implements OnInit{
   data:Product[] = [];
+  totalNumber:number = 0;
   tmpData:Product[] = [];
   favoriteList:Product[] = [];
+  firstProductIndex: number = 0;
+  rows: number = 6;
+  
+  @ViewChild('lowerInp') lowerInp!: ElementRef<HTMLInputElement>;
+  @ViewChild('higherInp') higherInp!: ElementRef<HTMLInputElement>;
+  @ViewChild('lthRadio') lthRadio!: ElementRef<HTMLInputElement>;
+  @ViewChild('htlRadio') htlRadio!: ElementRef<HTMLInputElement>;
+  @ViewChild('inStockRadio') inStockRadio!: ElementRef<HTMLInputElement>;
+  @ViewChild('outStockRadio') outStockRadio!: ElementRef<HTMLInputElement>;
+  @ViewChild('onSaleRadio') onSaleRadio!: ElementRef<HTMLInputElement>;
+
+  currentParams:string="";
+  lowPrice:number = 0;
+  highPrice:number = 10000000;
   constructor(
-    private _authService : AuthenticationService,
     private _productService: ProductService,
     private _cartService: CartServiceService,
     private _favoritesService: FavoritesServiceService,
     private messageService: MessageService
   ){}
 
-  ngOnInit (): void {
-    this._productService.getProducts(6,1).subscribe({
-      next:(data)=>{
-        this.tmpData = data.data.products;
-        this._favoritesService.getAll().subscribe({
-          next:(data)=>{
-            this.favoriteList = data.data.favorites;
-            this._productService.filterProducts(this.tmpData,this.favoriteList);
-            this.data=this.tmpData;
-          },
-          error:(err)=>{
-            console.log(err);
-          }
-        });
+  resetFilters(){
+    this.getProducts(this.rows,1);
+    this.lthRadio.nativeElement.checked = false;
+    this.htlRadio.nativeElement.checked = false;
+    this.inStockRadio.nativeElement.checked = false;
+    this.outStockRadio.nativeElement.checked = false;
+    this.onSaleRadio.nativeElement.checked = false;
+    this.lowerInp.nativeElement.value = '';
+    this.higherInp.nativeElement.value = '';
+    this.rows = 6;
+    this.firstProductIndex=0;
+  }
 
-      },
-      error:(err)=>{
-        console.log(err);
+  ngOnInit (): void {
+    this.getProducts(this.rows,1);
+  }
+
+  categorySearch(event:any){
+    this.rows = 6;
+    this.firstProductIndex=0;
+    this.currentParams = `?category=${event.target.value}`
+    this.getProducts(this.rows,1,this.currentParams);
+  }
+
+  stock(event:any){
+    if (event.target.checked) {
+      this.currentParams=event.target.value; 
+      this.getProducts(this.rows,1,this.currentParams);
       }
-    });
+  }
+
+  searchByName(event:any){
+    if(event.target.value){
+      this.currentParams = `?name=${event.target.value}`;
+      this.getProducts(this.rows,(this.firstProductIndex / 6)+1,this.currentParams);
+    }else{
+      this.currentParams = ``;
+      this.getProducts(this.rows,(this.firstProductIndex / 6)+1,this.currentParams);
+    }
     
   }
 
-  deleteProduct(productId:string){
-    this._productService.deleteProductById(productId).subscribe({
-      next:(data)=>{this.data=data.data;
-        this.messageService.add({ severity: 'info', summary: 'Info', detail: 'your product has been deleted' });
-      },
-      error:(err)=>console.log(err),
-    })
+  sort(event:any){
+    if (event.target.checked) {
+      this.rows = 6;
+      this.firstProductIndex=0;
+      this.currentParams=event.target.value; 
+    this.getProducts(this.rows,1,this.currentParams);
+       
+    }
+  }
+    priceRange(event:any){
+    if(event.target.id == 'lowerThan'){
+      this.highPrice=event.target.value;
+      if(!event.target.value){
+        this.highPrice=10000000;
+      }
+    }else if(event.target.id == 'higherThan'){
+      this.lowPrice=event.target.value;
+      if(!event.target.value){
+        this.lowPrice=0;
+      }
+    }
+    this.currentParams=`?price[lt]=${this.highPrice}&price[gt]=${this.lowPrice}`;
+    this.rows = 6;
+    this.firstProductIndex=0;
+    this.getProducts(this.rows,1,this.currentParams);
+  }
+
+
+  onPageChange(event: any) {
+      this.firstProductIndex = event.first;
+      this.rows = event.rows;
+      this.getProducts(this.rows,(this.firstProductIndex / 6)+1,this.currentParams);      
   }
 
   addToCart(productId:string){
@@ -98,9 +152,6 @@ export class ProductsComponent implements OnInit{
   recData(data:string){
     let arr = data.split(',');
     switch(arr[0]){
-      case "delete":
-        this.deleteProduct(arr[1]);
-        break;
       case "addToCart":
         this.addToCart(arr[1]);
         break;
@@ -114,6 +165,30 @@ export class ProductsComponent implements OnInit{
           break;
     }
     
+  }
+
+  getProducts(limit:number,page:number,params?:string){
+    this._productService.getProducts(limit,page,params).subscribe({
+      next:(data)=>{
+        this.tmpData = data.data.products;
+        this.totalNumber=data.total;
+            console.log(this.totalNumber);
+        this._favoritesService.getAll().subscribe({
+          next:(data)=>{
+            this.favoriteList = data.data.favorites;
+            this._productService.filterProducts(this.tmpData,this.favoriteList);
+            this.data=this.tmpData;
+          },
+          error:(err)=>{
+            console.log(err);
+          }
+        });
+
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    });
   }
 
 }

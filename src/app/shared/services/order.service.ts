@@ -14,12 +14,12 @@ export class OrderService {
     return this._httpClient.get(`${this.baseUrl}`);
   }
 
-  getUserOrders(userId:string):Observable<any>{
-    return this._httpClient.get(`${this.baseUrl}/${userId}`);
+  getUserOrders():Observable<any>{
+    return this._httpClient.get(`${this.baseUrl}`);
   }
 
-  createOrder(userId:string):Observable<any>{
-    return this._httpClient.post(`${this.baseUrl}/${userId}`,{});
+  createOrder():Observable<any>{
+    return this._httpClient.post(`${this.baseUrl}`,{});
   }
   
   

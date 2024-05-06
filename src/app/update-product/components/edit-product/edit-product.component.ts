@@ -30,7 +30,7 @@ export class EditProductComponent implements OnInit{
         this.productForm.get('price')?.setValue(this.product.price);
         this.productForm.get('priceDiscount')?.setValue(this.product.priceDiscount);
         this.productForm.get('description')?.setValue(this.product.description);
-        this.productForm.get('productQuantity')?.setValue(this.product.productQuantity);
+        this.productForm.get('amount')?.setValue(this.product.amount);
         this.productForm.get('category')?.setValue(this.product.category);
         this.productForm.get('brand')?.setValue(this.product.brand);
         this.ratingvalue = this.product.rating;
@@ -47,7 +47,7 @@ export class EditProductComponent implements OnInit{
     price:new FormControl('',[Validators.required]),
     priceDiscount:new FormControl(''),
     description:new FormControl('',[Validators.required]),
-    productQuantity:new FormControl('',[Validators.required]),
+    amount:new FormControl('',[Validators.required]),
     category:new FormControl('',[Validators.required]),
     brand:new FormControl(''),
   });

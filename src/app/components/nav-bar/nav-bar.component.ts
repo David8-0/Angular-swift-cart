@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { CartServiceService } from '../../shared/services/cart-service.service';
 import { FavoritesServiceService } from '../../shared/services/favorites-service.service';
 import { MessageService } from 'primeng/api';
-import { User } from '../../shared/interfaces/user';
+import { Role, User } from '../../shared/interfaces/user';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,6 +11,7 @@ import { User } from '../../shared/interfaces/user';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
+  readonly Role = Role;
     cartNumber:number = 0;
     favNumber:number = 0;
     userData:User = {} as User;
@@ -26,6 +27,8 @@ export class NavBarComponent {
       next:(res)=>{
         if(res!=null) this.isLoggedIn = true;
         else this.isLoggedIn = false;
+        this.userData = res;
+        console.log(this.userData);
       }
     });
 

@@ -40,9 +40,11 @@ import { RatingModule } from 'primeng/rating';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { GalleriaModule } from 'primeng/galleria';
 import { ImageModule } from 'primeng/image';
-import { CarouselComponent } from './Components/Utilites/carousel/carousel.component';
-import { TestComponent } from './Components/test/test.component';
+import { CarouselComponent } from './components/Utilites/carousel/carousel.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
 import { BtnComponent } from './components/Utilites/btn/btn.component';
+import { TrimStringPipe } from './shared/pipes/trim-string.pipe';
+import { responseHandlerInterceptor } from './shared/interceptors/response-handler.interceptor';
 
 @NgModule({
   declarations: [
@@ -61,8 +63,8 @@ import { BtnComponent } from './components/Utilites/btn/btn.component';
     WishlistComponent,
     ProductDetailsComponent,
     CarouselComponent,
-    TestComponent,
-    BtnComponent
+    BtnComponent,
+    TrimStringPipe
   ],
   imports: [
     BrowserModule,
@@ -90,11 +92,14 @@ import { BtnComponent } from './components/Utilites/btn/btn.component';
     ConfirmDialogModule,
     RatingModule,
     GalleriaModule,
-    ImageModule
+    ImageModule,
+    PanelMenuModule,
+    
   ],
-  providers: [provideHttpClient(withInterceptors([
-    myHttpInterceptor
-  ])),MessageService,ConfirmationService],
+  providers: [
+    provideHttpClient(withInterceptors([myHttpInterceptor])),
+    MessageService,ConfirmationService,
+    provideHttpClient(withInterceptors([responseHandlerInterceptor]))],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,7 +13,9 @@ export interface Product {
     isfavorite:boolean,
     inCart:boolean
     category:Category,
-    brand:string
+    brand:string,
+    amount:number,
+    actualPrice:number,
 }
 
 enum Category {

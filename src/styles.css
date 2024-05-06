@@ -1,3 +1,4 @@
+
 @import "primeicons/primeicons.css";
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
@@ -15,9 +16,10 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 body{
   font-family: "Playfair Display", serif;
-  color:white;
+  color:var(--main-color);
   font-weight: 400;
   font-style: normal;
+
 }
 .bg-lighBrown{
   background-color: var(--light-brown);
@@ -107,8 +109,10 @@ font-style: normal;
   border: 1px solid white;
   transition: all 0.2s ease-in;
   width: 150px;
+  background-color: var(--main-color);
 }
 .common-btn:hover{
   background-color: white;
-  color:var(--main-color)
+  color:var(--main-color);
+  border: 1px solid var(--main-color);
 }

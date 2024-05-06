@@ -23,7 +23,7 @@ export class UpdateProductComponent {
     price:new FormControl('',[Validators.required]),
     priceDiscount:new FormControl(''),
     description:new FormControl('',[Validators.required]),
-    productQuantity:new FormControl('',[Validators.required]),
+    amount:new FormControl('',[Validators.required]),
     category:new FormControl('',[Validators.required]),
     brand:new FormControl(''),
   });

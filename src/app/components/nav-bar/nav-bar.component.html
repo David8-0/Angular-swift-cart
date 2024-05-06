@@ -1,9 +1,4 @@
-
-
-  <nav
-  class="navbar navbar-expand-md bg-main-color"
-  data-bs-theme="dark"
->
+<nav class="navbar navbar-expand-md bg-main-color" data-bs-theme="dark">
   <div class="container">
     <a class="navbar-brand playfair-display-h4" routerLink="home">Swift Cart</a>
     <button
@@ -27,7 +22,7 @@
             >Home</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!userData?.role?.includes('seller')">
           <a
             class="nav-link work-sans-normal white-text"
             routerLinkActive=""
@@ -36,16 +31,24 @@
           >
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLoggedIn && userData?.role?.includes('seller')">
           <a
             class="nav-link work-sans-normal white-text"
             routerLinkActive=""
-            routerLink="test"
-            >Test</a
+            routerLink="/updateProduct/seller-products"
+            >My Products</a
+          >
+        </li>
+        <li class="nav-item" class="nav-item" *ngIf="isLoggedIn && userData?.role?.includes('user')">
+          <a
+            class="nav-link work-sans-normal white-text"
+            routerLinkActive=""
+            routerLink="/cart/myorders"
+            >My Orders</a
           >
         </li>
 
-        <li class="nav-item" *ngIf="isLoggedIn">
+        <li class="nav-item" *ngIf="isLoggedIn && userData?.role?.includes('seller')" >
           <a
             class="nav-link work-sans-normal white-text"
             routerLinkActive=""
@@ -56,7 +59,7 @@
       </ul>
 
       <div class="d-flex navbar-nav">
-        <li class="nav-item" *ngIf="isLoggedIn">
+        <li class="nav-item" class="nav-item" *ngIf="isLoggedIn && userData?.role?.includes('user')">
           <a
             class="nav-link text-white"
             routerLinkActive="active"
@@ -71,12 +74,8 @@
             ></i>
           </a>
         </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
-          <a
-            class="nav-link "
-            routerLinkActive="active"
-            routerLink="favorites"
-          >
+        <li class="nav-item" *ngIf="isLoggedIn && userData?.role?.includes('user')" >
+          <a class="nav-link" routerLinkActive="active" routerLink="favorites">
             <i
               class="pi pi-heart text-white"
               style="font-size: 1.5rem"
@@ -126,7 +125,6 @@
             logout
           </a>
         </li>
-
       </div>
     </div>
   </div>
