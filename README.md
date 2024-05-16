@@ -1,27 +1,22 @@
 # SwiftCart
 
+
+
+This project is a Ecommerce web application that allow users to register as sellers or clients where seller can upload and manage thier products and clients can add to favorite list or add to cart and place order with set of items in the cart. It integrates advanced authentication mechanisms, role-based access control, and personalized user profiles. It also facilitates password reset functionality via email verification codes and includes a dedicated dashboard for sellers to manage products seamlessly.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* Integrated advanced authentication mechanisms including JWT token generation and password hashing for secure user authentication.
+* Implemented role-based access control to administer user privileges effectively.
+* Enabled users to personalize profiles by uploading images and modifying information seamlessly.
+* Integrated Google Gmail API to facilitate password reset functionality via email verification codes.
+* Developed a dedicated dashboard for sellers, allowing effortless management of products with options to add, edit, or remove 
+  listings.
+* Designed the Angular frontend with a responsive, user-centric design.
+* Implemented guards to ensure controlled access to specific URLs.
+* Utilized interceptors for streamlined global commands during request and response cycles.
+* Used services to interact with APIs.
+* Prioritized modularization for optimized performance.
+* Incorporated server-side pagination and filtering to enhance overall efficiency.
